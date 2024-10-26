@@ -35,7 +35,7 @@ main {
     padding: 20px;
 }
 
-.gallery-grid {
+.product-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -43,7 +43,7 @@ main {
     margin-top: 20px;
 }
 
-.art-item {
+.product-item {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -52,9 +52,17 @@ main {
     padding: 10px;
 }
 
-.art-item img {
+.product-item img {
     max-width: 100%;
     border-radius: 4px;
+}
+
+#cart {
+    margin-top: 30px;
+}
+
+#cart-items {
+    margin: 10px 0;
 }
 
 footer {
