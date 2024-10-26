@@ -1,7 +1,7 @@
 /* Basic styling for the website */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f8f0f8;
     color: #333;
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    background-color: #444;
+    background-color: #ff69b4;
     color: #fff;
     padding: 10px 0;
     position: sticky;
