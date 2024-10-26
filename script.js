@@ -10,7 +10,6 @@ function addToCart(productId, productName, productPrice) {
     cart.push(cartItem);
     localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
-    updateCartTotal();
     alert(`${productName} has been added to your cart.`);
 }
 
@@ -41,24 +40,24 @@ function renderCartItems() {
         cartItemsContainer.appendChild(itemElement);
     });
     updateCartTotal();
-    addDeleteEventListeners();
+    addDeleteEventListeners(); // Ensure this is called to set up event listeners for the delete buttons
 }
 
 // Function to remove a product from the cart
 function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCartItems();
-    updateCartCount();
-    updateCartTotal();
+    cart.splice(index, 1); // Remove the item at the specified index
+    localStorage.setItem('cart', JSON.stringify(cart)); // Update the local storage
+    renderCartItems(); // Re-render the cart items
+    updateCartCount(); // Update the cart count
+    updateCartTotal(); // Update the cart total
 }
 
-// Function to add event listeners for delete buttons
+// Function to add event listeners to the delete buttons
 function addDeleteEventListeners() {
     document.querySelectorAll('.delete-from-cart').forEach(button => {
         button.addEventListener('click', (event) => {
             const index = parseInt(event.target.getAttribute('data-index'));
-            removeFromCart(index);
+            removeFromCart(index); // Remove the item from the cart
         });
     });
 }
@@ -71,7 +70,7 @@ function loadCart() {
     }
     updateCartCount();
     if (document.getElementById('cart-items')) {
-        renderCartItems();
+        renderCartItems(); // Render cart items if on the cart page
     }
 }
 
