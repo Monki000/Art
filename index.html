@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Art Store</title>
+    <title>My Art Store - Home</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,9 +11,9 @@
         <h1>Welcome to My Art Store!</h1>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li style="float: right;"><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li style="float: right;"><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -21,40 +21,12 @@
     <main>
         <section id="home">
             <h2>Welcome!</h2>
-            <p>Discover unique art pieces and merchandise created with passion. Explore our shop to find the perfect piece for your collection!</p>
-        </section>
-
-        <section id="shop">
-            <h2>Shop</h2>
-            <div class="product-list">
-                <div class="product-item" data-id="1" data-name="Art Piece 1" data-price="29.99">
-                    <img src="images/Makima.jpeg" alt="Makima Acrylic Keychain">
-                    <p>Art Piece 1</p>
-                    <p>$10</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <div class="product-item" data-id="2" data-name="Art Piece 2" data-price="19.99">
-                    <img src="images/Power.jpeg" alt="Power Acrylic Keychain">
-                    <p>Art Piece 2</p>
-                    <p>$10</p>
-                    <button class="add-to-cart">Add to Cart</button>
-                </div>
-                <!-- Add more product items as needed -->
-            </div>
-        </section>
-
-        <section id="cart">
-            <h2>Shopping Cart</h2>
-            <div id="cart-items"></div>
-            <p>Total: $<span id="total-price">0.00</span></p>
-            <button id="checkout">Checkout</button>
+            <p>Discover unique art pieces and merchandise created with passion.</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2024 My Art Store. All rights reserved.</p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
