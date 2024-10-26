@@ -1,145 +1,54 @@
 /* styles.css */
 
-/* General Styles */
+/* Body and main styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f7f7;
-    color: #333;
 }
 
-/* Header Styles */
+/* Header styles */
 header {
-    background-color: #ff1493; /* Deep pink */
-    color: white;
-    padding: 15px 20px;
-    text-align: center;
+    background-color: #f8f8f8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-/* Navigation Styles */
-nav {
-    text-align: center;
-    background-color: #ff69b4; /* Lighter pink for navigation */
-    padding: 10px 0;
-}
-
+/* Navigation styles */
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
+    margin-right: 20px;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
+/* Cart button styles */
+.cart-button {
+    font-size: 16px;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Main Content Styles */
+/* Main section styles */
 main {
     padding: 20px;
 }
 
-/* Footer Styles */
-footer {
-    background-color: #ff1493;
-    color: white;
+/* Product and image styles */
+.product {
+    display: inline-block;
     text-align: center;
-    padding: 5px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+    margin: 20px;
 }
 
-/* Product List Styles */
-.product-list {
-    display: flex; /* Arrange items in a row */
-    flex-wrap: wrap; /* Wrap to the next line if needed */
-    justify-content: space-around; /* Space items evenly */
-    margin-bottom: 30px; /* Space between product sections */
-}
-
-.product-item {
-    border: 2px solid #ff1493; /* Deep pink border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    width: calc(30% - 20px); /* Responsive width */
-    background-color: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.3s ease; /* Smooth transform on hover */
-}
-
-.product-item:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
-
-.product-item img {
-    max-width: 150px;
+.product-image {
+    max-width: 150px; /* Change to desired size */
+    max-height: 150px; /* Change to desired size */
+    width: auto;
     height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.product-item p {
-    margin: 10px 0;
-}
-
-.product-item button {
-    background-color: #ff1493;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease; /* Smooth background color transition */
-}
-
-.product-item button:hover {
-    background-color: #ff69b4; /* Lighter pink on hover */
-}
-
-/* Cart Count Styles */
-#cart-count {
-    font-weight: bold;
-}
-
-/* Section Title Styles */
-h2 {
-    color: #ff1493;
-    text-align: center;
-    margin-top: 40px;
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    .product-item {
-        width: calc(45% - 20px); /* Adjust width for smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .product-item {
-        width: calc(90% - 20px); /* Adjust width for very small screens */
-    }
 }
 
 /* Cart item styles */
@@ -147,22 +56,15 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #f0f0f0;
     margin-bottom: 10px;
 }
 
-/* Delete button styles */
-.delete-from-cart {
-    background-color: #ff4c4c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
+/* Footer styles */
+footer {
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
-
-.delete-from-cart:hover {
-    background-color: #ff0000;
-}
-
