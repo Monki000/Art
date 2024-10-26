@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Art Store - Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>My Art Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li style="float: right;"><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="shop">
+            <h2>Shop</h2>
+            <div class="product-list">
+                <div class="product-item" data-id="1" data-name="Makima Acrylic Keychain" data-price="29.99">
+                    <img src="images/Makima.jpeg" alt="Makima Acrylic Keychain">
+                    <p>Makima Acrylic Keychain</p>
+                    <p>$10</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-item" data-id="2" data-name="Power Acrylic Keychain" data-price="19.99">
+                    <img src="images/Power.jpeg" alt="Power Acrylic Keychain">
+                    <p>Power Acrylic Keychain</p>
+                    <p>$10</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <!-- Add more product items as needed -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Art Store. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
