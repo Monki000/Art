@@ -1,81 +1,143 @@
-/* Basic styling for the website */
+/* styles.css */
+
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f0f8;
-    color: #333;
     margin: 0;
     padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header Styles */
+header {
+    background-color: #ff1493; /* Deep pink */
+    color: white;
+    padding: 15px 20px;
     text-align: center;
 }
 
-header {
-    background-color: #ff69b4;
-    color: #fff;
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Navigation Styles */
+nav {
+    text-align: center;
+    background-color: #ff69b4; /* Lighter pink for navigation */
     padding: 10px 0;
-    position: sticky;
-    top: 0;
 }
 
 nav ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
-    margin: 0; /* Reset margin to avoid spacing issues */
+    margin: 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
     margin: 0 15px;
 }
 
-nav ul li:last-child {
-    float: right; /* Move the last item (cart) to the right */
-}
-
 nav ul li a {
-    color: #fff;
     text-decoration: none;
-    padding: 10px; /* Add some padding for better clickability */
+    color: white;
+    font-weight: bold;
 }
 
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
 main {
     padding: 20px;
 }
 
+/* Footer Styles */
+footer {
+    background-color: #ff1493;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Product List Styles */
 .product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    display: flex; /* Arrange items in a row */
+    flex-wrap: wrap; /* Wrap to the next line if needed */
+    justify-content: space-around; /* Space items evenly */
+    margin-bottom: 30px; /* Space between product sections */
 }
 
 .product-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 200px;
-    text-align: center;
+    border: 2px solid #ff1493; /* Deep pink border */
+    border-radius: 10px; /* Rounded corners */
     padding: 10px;
+    margin: 10px;
+    text-align: center;
+    width: calc(30% - 20px); /* Responsive width */
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease; /* Smooth transform on hover */
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 .product-item img {
     max-width: 100%;
-    border-radius: 4px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-#cart {
-    margin-top: 30px;
-}
-
-#cart-items {
+.product-item p {
     margin: 10px 0;
 }
 
-footer {
-    background-color: #444;
-    color: #fff;
-    padding: 15px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.product-item button {
+    background-color: #ff1493;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.product-item button:hover {
+    background-color: #ff69b4; /* Lighter pink on hover */
+}
+
+/* Cart Count Styles */
+#cart-count {
+    font-weight: bold;
+}
+
+/* Section Title Styles */
+h2 {
+    color: #ff1493;
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .product-item {
+        width: calc(45% - 20px); /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-item {
+        width: calc(90% - 20px); /* Adjust width for very small screens */
+    }
 }
