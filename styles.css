@@ -19,6 +19,7 @@ header {
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0; /* Reset margin to avoid spacing issues */
 }
 
 nav ul li {
@@ -26,9 +27,14 @@ nav ul li {
     margin: 0 15px;
 }
 
+nav ul li:last-child {
+    float: right; /* Move the last item (cart) to the right */
+}
+
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    padding: 10px; /* Add some padding for better clickability */
 }
 
 main {
@@ -62,14 +68,4 @@ main {
 }
 
 #cart-items {
-    margin: 10px 0;
-}
-
-footer {
-    background-color: #444;
-    color: #fff;
-    padding: 15px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+    margin: 10px 
