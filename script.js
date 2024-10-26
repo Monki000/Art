@@ -40,7 +40,7 @@ function renderCartItems() {
         cartItemsContainer.appendChild(itemElement);
     });
     updateCartTotal();
-    addDeleteEventListeners(); // Ensure this is called to set up event listeners for the delete buttons
+    addDeleteEventListeners();
 }
 
 // Function to remove a product from the cart
@@ -52,7 +52,7 @@ function removeFromCart(index) {
     updateCartTotal(); // Update the cart total
 }
 
-// Function to add event listeners to the delete buttons
+// Function to add event listeners for delete buttons
 function addDeleteEventListeners() {
     document.querySelectorAll('.delete-from-cart').forEach(button => {
         button.addEventListener('click', (event) => {
