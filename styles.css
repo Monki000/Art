@@ -1,81 +1,70 @@
-/* Basic styling for the website */
+/* styles.css */
+
+/* Body and main styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f0f8;
-    color: #333;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
+/* Header styles */
 header {
-    background-color: #ff69b4;
-    color: #fff;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
+    background-color: #f8f8f8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+/* Navigation styles */
 nav ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
-    margin: 0; /* Reset margin to avoid spacing issues */
 }
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
+    margin-right: 20px;
 }
 
-nav ul li:last-child {
-    float: right; /* Move the last item (cart) to the right */
+/* Cart button styles */
+.cart-button {
+    font-size: 16px;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px; /* Add some padding for better clickability */
-}
-
+/* Main section styles */
 main {
     padding: 20px;
 }
 
-.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+/* Product and image styles */
+.product {
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
 }
 
-.product-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 200px;
+.product-image {
+    max-width: 150px; /* Change to desired size */
+    max-height: 150px; /* Change to desired size */
+    width: auto;
+    height: auto;
+}
+
+/* Cart item styles */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #f8f8f8;
     text-align: center;
     padding: 10px;
-}
-
-.product-item img {
-    max-width: 100%;
-    border-radius: 4px;
-}
-
-#cart {
-    margin-top: 30px;
-}
-
-#cart-items {
-    margin: 10px 0;
-}
-
-footer {
-    background-color: #444;
-    color: #fff;
-    padding: 15px 0;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
 }
