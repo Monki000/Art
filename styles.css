@@ -20,6 +20,15 @@ nav a {
     text-decoration: none;
 }
 
+#cart-icon {
+    width: 30px; /* Adjust size as needed */
+    height: auto;
+    position: absolute; /* Position it absolutely */
+    right: 20px; /* Adjust right spacing */
+    top: 20px; /* Adjust top spacing */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
