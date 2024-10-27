@@ -62,6 +62,9 @@ nav a {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
+#home {
+    padding: 0 20px;
+}
 
 footer {
     background: #f1a2b7;
