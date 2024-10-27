@@ -21,7 +21,7 @@ nav a {
 }
 
 #cart-icon {
-    width: 10px; /* Adjust size as needed */
+    width: 50px; /* Adjust size as needed */
     height: auto;
     position: absolute; /* Position it absolutely */
     right: 20px; /* Adjust right spacing */
