@@ -49,6 +49,20 @@ nav a {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
+.cart-item {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
+}
+
+.cart-item img {
+    width: 100%; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure the image doesn't overflow */
+}
+
+
 footer {
     background: #f1a2b7;
     color: #fff;
