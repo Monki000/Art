@@ -44,7 +44,7 @@ nav a {
 }
 
 .product-item img {
-    width: 100px; /* Set desired width */
+    width: 50px; /* Set desired width */
     height: auto; /* Maintain aspect ratio */
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
