@@ -49,6 +49,14 @@ nav a {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
+.cart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
 .cart-items {
     background: #fff;
     border: 1px solid #ccc;
