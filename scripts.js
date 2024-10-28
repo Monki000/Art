@@ -60,3 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+let lastScrollTop = 0; // Keeps track of the last scroll position
+const footer = document.querySelector('footer'); // Get the footer element
+
+window.addEventListener('scroll', () => {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        // User is scrolling down
+        footer.style.display = 'none'; // Hide the footer
+    } else {
+        // User is scrolling up
+        footer.style.display = 'block'; // Show the footer
+    }
+
+    lastScrollTop = currentScrollTop; // Update the last scroll position
+});
+
