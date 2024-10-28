@@ -78,3 +78,10 @@ window.addEventListener('scroll', () => {
     lastScrollTop = currentScrollTop; // Update the last scroll position
 });
 
+// Handle checkout button click
+const checkoutButton = document.getElementById('checkout-button');
+if (checkoutButton) {
+    checkoutButton.addEventListener('click', () => {
+        window.location.href = 'checkout.html'; // Redirect to the checkout page
+    });
+}
