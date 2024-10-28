@@ -93,3 +93,9 @@ footer {
 footer[style*="display: none"] {
     opacity: 0;
 }
+
+label {
+    display: block; /* Labels on new line */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Make labels bold */
+}
