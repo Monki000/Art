@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Remove footer after scrolling down
 let lastScrollTop = 0; // Keeps track of the last scroll position
 const footer = document.querySelector('footer'); // Get the footer element
 
