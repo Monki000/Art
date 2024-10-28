@@ -49,13 +49,14 @@ nav a {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
-.cart-grid {
+.cart-items {
     display: flex;
     flex-wrap: wrap; /* Allows wrapping to the next line if there are too many items */
     gap: 20px; /* Space between each item */
 }
 
-.cart-items {
+/* Style for individual cart-item */
+.cart-item {
     display: flex;
     flex-direction: column; /* Keep the image and text stacked vertically within each item */
     align-items: center;
