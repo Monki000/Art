@@ -34,6 +34,8 @@ function renderCart() {
     });
 
     cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
+    
+    localStorage.setItem('totalAmount', total.toFixed(2));
 }
 
 // Function to remove an item from the cart
