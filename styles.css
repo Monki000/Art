@@ -74,8 +74,8 @@ nav a {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
-#home, #products, #cart {
-    padding: 0 20px;
+#home, #products, #cart, #checkout-form {
+    padding: 40px;
 }
 
 footer {
