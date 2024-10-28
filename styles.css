@@ -50,21 +50,25 @@ nav a {
 }
 
 .cart-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line if there are too many items */
+    gap: 20px; /* Space between each item */
 }
 
 .cart-items {
-    background: #fff;
+    display: flex;
+    flex-direction: column; /* Keep the image and text stacked vertically within each item */
+    align-items: center;
+    width: 200px; /* Set a fixed width for each item */
     border: 1px solid #ccc;
-    padding: 1rem;
-    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    border-radius: 8px;
 }
 
 .cart-items img {
-    width: 50px; /* Set desired width */
+    width: 100%; /* Set desired width */
     height: auto; /* Maintain aspect ratio */
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
