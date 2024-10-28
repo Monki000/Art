@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script>
 </head>
 <body>
     <header>
@@ -24,19 +25,102 @@
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
-            <label for="contact">Contact (Phone/Email):</label>
-            <input type="text" id="contact" name="contact" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
 
-            <label for="address">Delivery Address:</label>
-            <textarea id="address" name="address" required></textarea>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
 
-            <button type="submit">Submit</button>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+
+            <label for="postal-code">Postal Code:</label>
+            <input type="text" id="postal-code" name="postal-code" required>
+
+            <label for="country">Country:</label>
+            <select id="country" name="country" required>
+                <option value="SG">Singapore</option>
+                <option value="MY">Malaysia</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="JP">Japan</option>
+                <option value="AU">Australia</option>
+                <!-- Add more countries as needed -->
+            </select>
+
+            <h3>Payment Options:</h3>
+            <div>
+                <input type="radio" id="paypal" name="payment" value="paypal" required checked>
+                <label for="paypal">PayPal</label>
+            </div>
+            <div>
+                <button type="submit" id="submit-button">Proceed to Payment</button>
+            </div>
         </form>
+        
+        <div id="paypal-button-container"></div>
     </section>
 
     <footer>
         <p>&copy;Tongspalette. All rights reserved.</p>
     </footer>
+    
     <script src="scripts.js"></script>
+    <script>
+        // Get the total amount from localStorage
+        const totalAmount = localStorage.getItem('totalAmount') || '0.00';
+
+        // PayPal Button integration
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                // Capture the form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const address = document.getElementById('address').value;
+                const city = document.getElementById('city').value;
+                const state = document.getElementById('state').value;
+                const postalCode = document.getElementById('postal-code').value;
+                const countryCode = document.getElementById('country').value;
+
+                // You might want to send this data to your backend here to store it
+
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalAmount // Use the total amount from localStorage
+                        },
+                        shipping: {
+                            name: {
+                                full_name: name
+                            },
+                            address: {
+                                address_line_1: address,
+                                address_line_2: '', // Optional second address line
+                                admin_area_2: city, // City
+                                admin_area_1: state, // State
+                                postal_code: postalCode, // Postal code
+                                country_code: countryCode // Country code
+                            }
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction completed by ' + details.payer.name.given);
+                    // Redirect to thank you page or show confirmation
+                    window.location.href = 'thankyou.html';
+                });
+            },
+            onError: function(err) {
+                console.error(err);
+                alert('An error occurred with your payment. Please try again.');
+            }
+        }).render('#paypal-button-container'); // Display the PayPal button
+    </script>
 </body>
 </html>
