@@ -87,3 +87,9 @@ if (checkoutButton) {
         window.location.href = 'checkout.html'; // Redirect to the checkout page
     });
 }
+
+// Show total amount on check out page
+document.addEventListener('DOMContentLoaded', () => {
+    const totalAmount = localStorage.getItem('cartTotal'); // Retrieve total from local storage
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+});
