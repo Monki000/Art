@@ -38,6 +38,13 @@ function renderCart() {
     localStorage.setItem('totalAmount', total.toFixed(2));
 }
 
+// Inside scripts.js or a separate script tag in checkout.html
+document.addEventListener('DOMContentLoaded', () => {
+    const totalAmount = localStorage.getItem('cartTotal'); // Retrieve total from local storage
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+});
+
+
 // Function to remove an item from the cart
 function removeFromCart(index) {
     cart.splice(index, 1);
