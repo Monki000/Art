@@ -82,3 +82,12 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+footer {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
+
+footer[style*="display: none"] {
+    opacity: 0;
+}
