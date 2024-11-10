@@ -103,7 +103,7 @@ const productOptions = {
     spyxfamilysticker: [
         { name: "Yor Sticker", price: 4.00, image: "images/Yor.jpeg" },
         { name: "Anya Sticker", price: 5.50, image: "images/Anya.jpeg" },
-        { name: "Loid Sticker", price: 6.00, image: "images/Loid,jpeg" }
+        { name: "Loid Sticker", price: 6.00, image: "images/Loid.jpeg" }
     ],
     chainsawmankeychain: [
         { name: "Makima Keychain", price: 7.00, image: "images/Makima.jpeg" },
@@ -112,7 +112,7 @@ const productOptions = {
     spyxfamilykeychain: [
         { name: "Yor Keychain", price: 4.00, image: "images/Yor.jpeg" },
         { name: "Anya Keychain", price: 5.50, image: "images/Anya.jpeg" },
-        { name: "Loid Keychain", price: 6.00, image: "images/Loid,jpeg" }
+        { name: "Loid Keychain", price: 6.00, image: "images/Loid.jpeg" }
     ],
     // Add more categories as needed
 };
