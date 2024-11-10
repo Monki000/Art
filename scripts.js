@@ -179,10 +179,6 @@ window.addEventListener('scroll', () => {
 const checkoutButton = document.getElementById('checkout-button');
 if (checkoutButton) {
     checkoutButton.addEventListener('click', () => {
-        if (cart.length === 0) {
-            alert('Your cart is empty! Please add items to proceed.');
-        } else {
-            window.location.href = 'checkout.html';
-        }
+        window.location.href = 'checkout.html'; // Redirect to the checkout page
     });
 }
