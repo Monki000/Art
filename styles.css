@@ -105,35 +105,6 @@ label {
     font-weight: bold; /* Make labels bold */
 }
 
-.option {
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.option img {
-    width: 100px;  /* Set a fixed width or adjust as needed */
-    height: auto;  /* Maintain aspect ratio */
-    margin-bottom: 10px;
-}
-
-.option button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.option button:hover {
-    background-color: #45a049;
-}
-
-#productOptionsModal {
-    display: none; /* Hidden by default */
-    /* Additional styling here for modal appearance */
-}
-
 /* Modal container */
 .modal {
     display: none; /* Hidden by default */
@@ -145,20 +116,22 @@ label {
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Make sure it's on top of other content */
+    z-index: 1000; /* Ensure it is on top of other content */
+    overflow: auto; /* In case content is too long */
 }
 
-/* Modal content */
+/* Modal content (the box that contains the options) */
 .modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     max-width: 600px;
-    width: 80%; /* Adjust width to fit the screen */
+    width: 80%; /* Adjust width as needed */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
-/* Close button */
+/* Close button for the modal */
 .close-button {
     position: absolute;
     top: 10px;
@@ -168,4 +141,45 @@ label {
     font-weight: bold;
 }
 
+/* Styling for each option in the modal */
+.option {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
+.option img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.option p {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.add-to-cart-button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-to-cart-button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for the modal title */
+#modalTitle {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
