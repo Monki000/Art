@@ -99,7 +99,6 @@ const productOptions = {
     chainsawmansticker: [
         { name: "Makima Sticker", price: 5.00, image: "images/Makima.jpeg" },
         { name: "Power", price: 6.00, image: "images/Power.jpeg" },
-        { name: "Sticker C", price: 7.00, image: "images/sticker_c.jpg" }
     ],
     spyxfamilysticker: [
         { name: "Luffy Sticker", price: 4.00, image: "images/luffy_sticker.jpg" },
