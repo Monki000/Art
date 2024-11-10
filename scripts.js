@@ -110,6 +110,7 @@ const productOptions = {
 };
 
 function showOptions(category) {
+    console.log("showOptions called for category:", category); // For debugging
     const modalOptionsContainer = document.getElementById('modalOptions');
     const modalTitle = document.getElementById('modalTitle');
 
