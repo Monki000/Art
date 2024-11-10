@@ -20,6 +20,11 @@ const productOptions = {
     // Add more categories as needed
 };
 
+function toggleModal(isVisible) {
+    const modal = document.getElementById('productOptionsModal');
+    modal.style.display = isVisible ? 'flex' : 'none';
+}
+
 function showOptions(category) {
     console.log("showOptions called for category:", category); // For debugging
     const modalOptionsContainer = document.getElementById('modalOptions');
@@ -68,12 +73,11 @@ function showOptions(category) {
         });
     });
 
-    // Show the modal
-    document.getElementById('productOptionsModal').style.display = 'flex';
+    toggleModal(true); // Show the modal
 }
 
 function closeModal() {
-    document.getElementById('productOptionsModal').style.display = 'none';
+    toggleModal(false); // Hide the modal
 }
 
 // Array to hold cart items
@@ -118,6 +122,8 @@ function renderCart() {
 
 // Inside scripts.js or a separate script tag in checkout.html
 document.addEventListener('DOMContentLoaded', () => {
+    renderCart(); // Render cart items if on the cart page
+    
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
     document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
 
@@ -129,19 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showOptions(category);
         });
     });
-});
-
-// Function to remove an item from the cart
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
-}
-
-// Function to handle adding to cart buttons
-document.addEventListener('DOMContentLoaded', () => {
-    renderCart(); // Render cart items if on the cart page
-
+    
     const addToCartButtons = document.querySelectorAll('.product-item button');
     addToCartButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
@@ -156,9 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-if (!cart || cart.length === 0) {
-    alert('Your cart is empty!');
-    // Optionally, redirect to the home page or show an empty cart message
+// Function to remove an item from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
 }
 
 // Remove footer after scrolling down
@@ -183,6 +179,10 @@ window.addEventListener('scroll', () => {
 const checkoutButton = document.getElementById('checkout-button');
 if (checkoutButton) {
     checkoutButton.addEventListener('click', () => {
-        window.location.href = 'checkout.html'; // Redirect to the checkout page
+        if (cart.length === 0) {
+            alert('Your cart is empty! Please add items to proceed.');
+        } else {
+            window.location.href = 'checkout.html';
+        }
     });
 }
