@@ -125,7 +125,6 @@ function showOptions(category) {
     // Clear any existing options in the modal
     modalOptionsContainer.innerHTML = '';
 
-    const modalTitle = document.getElementById('modalTitle');
     console.log(modalTitle); // Check if the modal title element is being found
 
     if (modalTitle) {
