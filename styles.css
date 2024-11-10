@@ -128,3 +128,9 @@ label {
 .option button:hover {
     background-color: #45a049;
 }
+
+#productOptionsModal {
+    display: none; /* Hidden by default */
+    /* Additional styling here for modal appearance */
+}
+
