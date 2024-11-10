@@ -142,3 +142,7 @@ function showOptions(category) {
     // Show the modal
     document.getElementById('productOptionsModal').style.display = 'flex';
 }
+
+function closeModal() {
+    document.getElementById('productOptionsModal').style.display = 'none';
+}
