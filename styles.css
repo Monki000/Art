@@ -78,6 +78,11 @@ nav a {
     padding: 40px;
 }
 
+.booth-photos {
+    width: 25%;
+    height: auto;
+}
+
 footer {
     background: #f1a2b7;
     color: #fff;
