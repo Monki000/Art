@@ -51,6 +51,24 @@ function removeFromCart(index) {
     renderCart();
 }
 
+// Function to handle adding to cart buttons
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart(); // Render cart items if on the cart page
+
+    const addToCartButtons = document.querySelectorAll('.product-item button');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const productElement = button.parentElement;
+            const product = {
+                name: productElement.querySelector('h3').textContent,
+                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
+                image: productElement.querySelector('img').src
+            };
+            addToCart(product);
+        });
+    });
+});
+
 // Remove footer after scrolling down
 let lastScrollTop = 0; // Keeps track of the last scroll position
 const footer = document.querySelector('footer'); // Get the footer element
