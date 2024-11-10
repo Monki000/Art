@@ -99,59 +99,57 @@ const productOptions = {
     // Add more categories as needed
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    function showOptions(category) {
-        console.log("showOptions called for category:", category); // For debugging
-        const modalOptionsContainer = document.getElementById('modalOptions');
-        const modalTitle = document.getElementById('modalTitle');
+function showOptions(category) {
+    console.log("showOptions called for category:", category); // For debugging
+    const modalOptionsContainer = document.getElementById('modalOptions');
+    const modalTitle = document.getElementById('modalTitle');
 
-        // Clear any existing options in the modal
-        modalOptionsContainer.innerHTML = '';
+    // Clear any existing options in the modal
+    modalOptionsContainer.innerHTML = '';
 
-        console.log(modalTitle); // Check if the modal title element is being found
+    console.log(modalTitle); // Check if the modal title element is being found
 
-        if (modalTitle) {
+    if (modalTitle) {
         modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-        } else {
+    } else {
         console.error("Modal title element not found.");
-        }
-
-        // Get the product options for the chosen category
-        const options = productOptions[category];
-
-        // Dynamically generate HTML for each option
-        options.forEach(option => {
-            // Create a div for each option
-            const optionDiv = document.createElement('div');
-            optionDiv.classList.add('option');
-        
-            // Set the HTML for the option with the image
-            optionDiv.innerHTML = `
-                <img src="${option.image}" alt="${option.name}" class="option-image">
-                <p>${option.name} - $${option.price.toFixed(2)}</p>
-                <button onclick="addToCart({name: '${option.name}', price: ${option.price}, image: '${option.image}'})">Add to Cart</button>
-            `;
-        
-            // Append the option to the modal container
-            modalOptionsContainer.appendChild(optionDiv);
-        });
-    
-        const addToCartButtons = modalOptionsContainer.querySelectorAll('.add-to-cart-button');
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const product = {
-                    name: e.target.getAttribute('data-name'),
-                    price: parseFloat(e.target.getAttribute('data-price')),
-                    image: e.target.getAttribute('data-image')
-                };
-                addToCart(product);
-            });
-        });
-
-        // Show the modal
-        document.getElementById('productOptionsModal').style.display = 'flex';
     }
-});
+
+    // Get the product options for the chosen category
+    const options = productOptions[category];
+
+    // Dynamically generate HTML for each option
+    options.forEach(option => {
+        // Create a div for each option
+        const optionDiv = document.createElement('div');
+        optionDiv.classList.add('option');
+        
+        // Set the HTML for the option with the image
+        optionDiv.innerHTML = `
+            <img src="${option.image}" alt="${option.name}" class="option-image">
+            <p>${option.name} - $${option.price.toFixed(2)}</p>
+            <button class="add-to-cart-button" data-name="${option.name}" data-price="${option.price}" data-image="${option.image}">Add to Cart</button>
+        `;
+        
+        // Append the option to the modal container
+        modalOptionsContainer.appendChild(optionDiv);
+    });
+
+    const addToCartButtons = modalOptionsContainer.querySelectorAll('.add-to-cart-button');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const product = {
+                name: e.target.getAttribute('data-name'),
+                price: parseFloat(e.target.getAttribute('data-price')),
+                image: e.target.getAttribute('data-image')
+            };
+            addToCart(product);
+        });
+    });
+
+    // Show the modal
+    document.getElementById('productOptionsModal').style.display = 'flex';
+}
 
 function closeModal() {
     document.getElementById('productOptionsModal').style.display = 'none';
