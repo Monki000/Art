@@ -125,6 +125,15 @@ function showOptions(category) {
     // Clear any existing options in the modal
     modalOptionsContainer.innerHTML = '';
 
+    const modalTitle = document.getElementById('modalTitle');
+    console.log(modalTitle); // Check if the modal title element is being found
+
+    if (modalTitle) {
+    modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    } else {
+    console.error("Modal title element not found.");
+    }
+
     // Set a dynamic title for the modal based on the category
     modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
 
