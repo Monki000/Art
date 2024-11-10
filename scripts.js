@@ -133,9 +133,6 @@ function showOptions(category) {
     console.error("Modal title element not found.");
     }
 
-    // Set a dynamic title for the modal based on the category
-    modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-
     // Get the product options for the chosen category
     const options = productOptions[category];
 
