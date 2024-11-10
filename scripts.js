@@ -42,6 +42,15 @@ function renderCart() {
 document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
     document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+
+    // Add event listeners for category buttons
+    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            showOptions(category);
+        });
+    });
 });
 
 // Function to remove an item from the cart
