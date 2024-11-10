@@ -104,3 +104,27 @@ label {
     margin-bottom: 5px; /* Space between label and input */
     font-weight: bold; /* Make labels bold */
 }
+
+.option {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.option img {
+    width: 100px;  /* Set a fixed width or adjust as needed */
+    height: auto;  /* Maintain aspect ratio */
+    margin-bottom: 10px;
+}
+
+.option button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.option button:hover {
+    background-color: #45a049;
+}
