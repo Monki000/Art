@@ -94,3 +94,51 @@ if (checkoutButton) {
         window.location.href = 'checkout.html'; // Redirect to the checkout page
     });
 }
+
+const productOptions = {
+    chainsawmansticker: [
+        { name: "Makima Sticker", price: 5.00, image: "images/Makima.jpeg" },
+        { name: "Power", price: 6.00, image: "images/Power.jpeg" },
+        { name: "Sticker C", price: 7.00, image: "images/sticker_c.jpg" }
+    ],
+    spyxfamilysticker: [
+        { name: "Luffy Sticker", price: 4.00, image: "images/luffy_sticker.jpg" },
+        { name: "Zoro Sticker", price: 5.50, image: "images/zoro_sticker.jpg" },
+        { name: "Nami Sticker", price: 6.00, image: "images/nami_sticker.jpg" }
+    ],
+    // Add more categories as needed
+};
+
+function showOptions(category) {
+    const modalOptionsContainer = document.getElementById('modalOptions');
+    const modalTitle = document.getElementById('modalTitle');
+
+    // Clear any existing options in the modal
+    modalOptionsContainer.innerHTML = '';
+
+    // Set a dynamic title for the modal based on the category
+    modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+
+    // Get the product options for the chosen category
+    const options = productOptions[category];
+
+    // Dynamically generate HTML for each option
+    options.forEach(option => {
+        // Create a div for each option
+        const optionDiv = document.createElement('div');
+        optionDiv.classList.add('option');
+        
+        // Set the HTML for the option with the image
+        optionDiv.innerHTML = `
+            <img src="${option.image}" alt="${option.name}" class="option-image">
+            <p>${option.name} - $${option.price.toFixed(2)}</p>
+            <button onclick="addToCart('${option.name}', ${option.price}, '${option.image}')">Add to Cart</button>
+        `;
+        
+        // Append the option to the modal container
+        modalOptionsContainer.appendChild(optionDiv);
+    });
+
+    // Show the modal
+    document.getElementById('productOptionsModal').style.display = 'flex';
+}
