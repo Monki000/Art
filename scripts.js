@@ -97,13 +97,13 @@ if (checkoutButton) {
 
 const productOptions = {
     chainsawmansticker: [
-        { name: "Makima Sticker", price: 5.00, image: "images/Makima.jpeg" },
-        { name: "Power", price: 6.00, image: "images/Power.jpeg" },
+        { name: "Makima Sticker", price: 7.00, image: "images/Makima.jpeg" },
+        { name: "Power Sticker", price: 7.00, image: "images/Power.jpeg" },
     ],
     spyxfamilysticker: [
-        { name: "Luffy Sticker", price: 4.00, image: "images/luffy_sticker.jpg" },
-        { name: "Zoro Sticker", price: 5.50, image: "images/zoro_sticker.jpg" },
-        { name: "Nami Sticker", price: 6.00, image: "images/nami_sticker.jpg" }
+        { name: "Yor Sticker", price: 4.00, image: "images/Yor.jpeg" },
+        { name: "Anya Sticker", price: 5.50, image: "images/Anya.jpeg" },
+        { name: "Loid Sticker", price: 6.00, image: "images/Loid,jpeg" }
     ],
     // Add more categories as needed
 };
