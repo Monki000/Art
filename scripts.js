@@ -78,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+if (!cart || cart.length === 0) {
+    alert('Your cart is empty!');
+    // Optionally, redirect to the home page or show an empty cart message
+}
+
 // Remove footer after scrolling down
 let lastScrollTop = 0; // Keeps track of the last scroll position
 const footer = document.querySelector('footer'); // Get the footer element
