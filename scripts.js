@@ -133,7 +133,7 @@ function showOptions(category) {
         optionDiv.innerHTML = `
             <img src="${option.image}" alt="${option.name}" class="option-image">
             <p>${option.name} - $${option.price.toFixed(2)}</p>
-            <button onclick="addToCart('${option.name}', ${option.price}, '${option.image}')">Add to Cart</button>
+            <button onclick="addToCart({name: '${option.name}', price: ${option.price}, image: '${option.image}'})">Add to Cart</button>
         `;
         
         // Append the option to the modal container
