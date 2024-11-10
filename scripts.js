@@ -139,6 +139,18 @@ function showOptions(category) {
         // Append the option to the modal container
         modalOptionsContainer.appendChild(optionDiv);
     });
+    
+    const addToCartButtons = modalOptionsContainer.querySelectorAll('.add-to-cart-button');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const product = {
+                name: e.target.getAttribute('data-name'),
+                price: parseFloat(e.target.getAttribute('data-price')),
+                image: e.target.getAttribute('data-image')
+            };
+            addToCart(product);
+        });
+    });
 
     // Show the modal
     document.getElementById('productOptionsModal').style.display = 'flex';
