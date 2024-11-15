@@ -183,3 +183,11 @@ label {
     margin-bottom: 15px;
     font-weight: bold;
 }
+
+ul li {
+    margin-bottom: 10px;
+}
+ul li img {
+    display: block;
+    margin-top: 10px;
+}
