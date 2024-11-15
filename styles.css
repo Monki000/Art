@@ -36,35 +36,23 @@ nav a {
 }
 
 .product-grid {
-    display: flex;  /* Align items in a row */
-    overflow-x: auto;  /* Enable horizontal scrolling */
-    padding: 10px;  /* Optional: Add padding inside the container */
-    gap: 20px;  /* Optional: Space between product items */
-    scroll-snap-type: x mandatory; /* Snap scroll (optional for smooth scrolling) */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .product-item {
-    flex: 0 0 auto;  /* Ensure the product items don’t stretch */
-    width: 200px; /* Set a fixed width for product items */
-    height: 300px; /* Set a fixed height for product items (adjust as needed) */
-    border: 1px solid #ccc;  /* Add a border around the product item */
-    padding: 10px;  /* Add padding inside product items */
-    box-sizing: border-box;  /* Ensure padding doesn't affect width/height */
-    text-align: center; /* Center content inside product item */
-    scroll-snap-align: start;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
 }
 
-.product-container::-webkit-scrollbar {
-    height: 8px;  /* Height of the scrollbar */
-}
-
-.product-container::-webkit-scrollbar-thumb {
-    background: #888;  /* Scrollbar thumb color */
-    border-radius: 4px;  /* Rounded corners for the thumb */
-}
-
-.product-container::-webkit-scrollbar-thumb:hover {
-    background: #555;  /* Darker color when hovering */
+.product-item img {
+    width: 100%; /* Set desired width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
 .cart-items {
