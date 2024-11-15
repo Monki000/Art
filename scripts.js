@@ -4,18 +4,24 @@ const productOptions = {
         { name: "Power Sticker", price: 7.00, image: "images/Power.jpeg" },
     ],
     spyxfamilysticker: [
-        { name: "Yor Sticker", price: 4.00, image: "images/Yor.jpeg" },
-        { name: "Anya Sticker", price: 5.50, image: "images/Anya.jpeg" },
-        { name: "Loid Sticker", price: 6.00, image: "images/Loid.jpeg" }
+        { name: "Yor Forger Sticker", price: 4.00, image: "images/Yor.jpeg" },
+        { name: "Anya Forger Sticker", price: 5.50, image: "images/Anya.jpeg" },
+        { name: "Loid Forger Sticker", price: 6.00, image: "images/Loid.jpeg" }
     ],
     chainsawmankeychain: [
         { name: "Makima Keychain", price: 7.00, image: "images/Makima.jpeg" },
         { name: "Power Keychain", price: 7.00, image: "images/Power.jpeg" },
     ],
     spyxfamilykeychain: [
-        { name: "Yor Keychain", price: 4.00, image: "images/Yor.jpeg" },
-        { name: "Anya Keychain", price: 5.50, image: "images/Anya.jpeg" },
-        { name: "Loid Keychain", price: 6.00, image: "images/Loid.jpeg" }
+        { name: "Yor Forger Keychain", price: 4.00, image: "images/Yor.jpeg" },
+        { name: "Anya Forger Keychain", price: 5.50, image: "images/Anya.jpeg" },
+        { name: "Loid Forger Keychain", price: 6.00, image: "images/Loid.jpeg" }
+    ],
+    oshinokophotocard: [
+        { name: "Hoshino Aqua Photocard", price: 4.00, image: "images/Aqua.jpeg" },
+        { name: "Hoshino Ruby Photocard", price: 4.00, image: "images/Ruby.jpeg" },
+        { name: "Kurokawa Akane Photocard", price: 4.00, image: "images/Akane.jpeg" },
+        { name: "Arima Kana Photocard", price: 4.00, image: "images/Kana.jpeg" }
     ],
     // Add more categories as needed
 };
