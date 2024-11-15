@@ -48,6 +48,7 @@ nav a {
     border: 1px solid #ccc;
     padding: 1rem;
     text-align: center;
+    scroll-snap-align: start; /* Optional: aligns to start when scrolling */
 }
 
 .product-item img {
