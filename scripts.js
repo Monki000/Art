@@ -134,16 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
 
     // Handle "Add to Cart" buttons for direct add (no modal)
-    const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+    const productsContainer = document.getElementById('products');
+    productsContainer.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('add-to-cart-button')) {
             const product = {
                 name: e.target.getAttribute('data-name'),
                 price: parseFloat(e.target.getAttribute('data-price')),
                 image: e.target.getAttribute('data-image')
             };
             addToCart(product); // Add product to cart
-        });
+        }
     });
 
     // Handle "Show Options" buttons for modal-based selection
