@@ -127,25 +127,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
     document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
 
-    // Add event listeners for category buttons
-    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
+    // Handle "Add to Cart" buttons for direct add (no modal)
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const product = {
+                name: e.target.getAttribute('data-name'),
+                price: parseFloat(e.target.getAttribute('data-price')),
+                image: e.target.getAttribute('data-image')
+            };
+            addToCart(product); // Add product to cart
+        });
+    });
+
+    // Handle "Show Options" buttons for modal-based selection
+    const showOptionsButtons = document.querySelectorAll('.show-options-button');
+    showOptionsButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const category = e.target.closest('.product-item').getAttribute('data-category');
+            showOptions(category); // Show modal for the selected category
+        });
+    });
+
+    // Optionally: If you have category buttons that open a modal directly
+    const categoryButtons = document.querySelectorAll('.category-button'); // Only if you use category-specific product options
     categoryButtons.forEach(button => {
         button.addEventListener('click', () => {
             const category = button.getAttribute('data-category');
-            showOptions(category);
-        });
-    });
-    
-    const addToCartButtons = document.querySelectorAll('.product-item button');
-    addToCartButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const productElement = button.parentElement;
-            const product = {
-                name: productElement.querySelector('h3').textContent,
-                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
-                image: productElement.querySelector('img').src
-            };
-            addToCart(product);
+            showOptions(category); // Show options for selected category
         });
     });
 });
