@@ -89,6 +89,18 @@ nav a {
     height: auto;
 }
 
+@media (max-width: 768px) {
+    .booth-photos {
+        width: 50%; /* Increase size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .booth-photos {
+        width: 80%; /* Full width for very small screens */
+    }
+}
+
 footer {
     background: #f1a2b7;
     color: #fff;
