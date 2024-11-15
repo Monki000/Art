@@ -14,6 +14,12 @@ header {
     text-align: center;
 }
 
+#tong-icon {
+    width: 200px;
+    height: auto;
+    left: 20px;
+}
+
 nav a {
     color: #fff;
     margin: 0 1rem;
