@@ -30,8 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart(); // Render cart items if on the cart page
 
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
-    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
-
+    const amountElement = document.getElementById('amount'); // Find the element
+    
+    if (amountElement) { // Ensure the element exists
+        amountElement.textContent = totalAmount 
+            ? parseFloat(totalAmount).toFixed(2) 
+            : '0.00'; // Set its content
+    }
+    
     // Add event listener for "Add to Cart" and "Show Options" buttons dynamically
     const productsContainer = document.getElementById('products');
     productsContainer.addEventListener('click', (e) => {
