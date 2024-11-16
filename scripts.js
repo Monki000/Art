@@ -26,60 +26,73 @@ const productOptions = {
     // Add more categories as needed
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart(); // Render cart items if on the cart page
+
+    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+
+    // Add event listener for "Add to Cart" and "Show Options" buttons dynamically
+    const productsContainer = document.getElementById('products');
+    productsContainer.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('add-to-cart-button')) {
+            const product = {
+                name: e.target.getAttribute('data-name'),
+                price: parseFloat(e.target.getAttribute('data-price')),
+                image: e.target.getAttribute('data-image'),
+            };
+            addToCart(product); // Add product to cart
+        } else if (e.target && e.target.classList.contains('category-button')) {
+            const category = e.target.getAttribute('data-category');
+            showOptions(category); // Show modal for the selected category
+        }
+    });
+});
+
+// Modal handling for product options
 function toggleModal(isVisible) {
     const modal = document.getElementById('productOptionsModal');
     modal.style.display = isVisible ? 'flex' : 'none';
 }
 
 function showOptions(category) {
-    console.log("showOptions called for category:", category); // For debugging
     const modalOptionsContainer = document.getElementById('modalOptions');
     const modalTitle = document.getElementById('modalTitle');
 
-    // Clear any existing options in the modal
-    modalOptionsContainer.innerHTML = '';
+    modalOptionsContainer.innerHTML = ''; // Clear existing options
+    modalTitle.textContent = `Choose Your Option for ${category.replace(/sticker|keychain|photocard/gi, '').toUpperCase()}`;
 
-    console.log(modalTitle); // Check if the modal title element is being found
-
-    if (modalTitle) {
-        modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
-    } else {
-        console.error("Modal title element not found.");
+    const options = productOptions[category];
+    if (!options) {
+        console.error(`No options found for category: ${category}`);
+        return;
     }
 
-    // Get the product options for the chosen category
-    const options = productOptions[category];
-
-    // Dynamically generate HTML for each option
-    options.forEach(option => {
-        // Create a div for each option
+    options.forEach((option) => {
         const optionDiv = document.createElement('div');
         optionDiv.classList.add('option');
-        
-        // Set the HTML for the option with the image
         optionDiv.innerHTML = `
             <img src="${option.image}" alt="${option.name}" class="option-image">
             <p>${option.name} - $${option.price.toFixed(2)}</p>
             <button class="add-to-cart-button" data-name="${option.name}" data-price="${option.price}" data-image="${option.image}">Add to Cart</button>
         `;
-        
-        // Append the option to the modal container
         modalOptionsContainer.appendChild(optionDiv);
     });
 
-    const addToCartButtons = modalOptionsContainer.querySelectorAll('.add-to-cart-button');
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
+    // Ensure buttons within the modal add to the cart
+    modalOptionsContainer.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('add-to-cart-button')) {
             const product = {
                 name: e.target.getAttribute('data-name'),
                 price: parseFloat(e.target.getAttribute('data-price')),
-                image: e.target.getAttribute('data-image')
+                image: e.target.getAttribute('data-image'),
             };
             addToCart(product);
-        });
+            toggleModal(false); // Close modal after adding
+        }
     });
 
-    toggleModal(true); // Show the modal
+    toggleModal(true);
 }
 
 function closeModal() {
@@ -125,45 +138,6 @@ function renderCart() {
     
     localStorage.setItem('totalAmount', total.toFixed(2));
 }
-
-// Inside scripts.js or a separate script tag in checkout.html
-document.addEventListener('DOMContentLoaded', () => {
-    renderCart(); // Render cart items if on the cart page
-    
-    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
-    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
-
-    // Handle "Add to Cart" buttons for direct add (no modal)
-    const productsContainer = document.getElementById('products');
-    productsContainer.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('add-to-cart-button')) {
-            const product = {
-                name: e.target.getAttribute('data-name'),
-                price: parseFloat(e.target.getAttribute('data-price')),
-                image: e.target.getAttribute('data-image')
-            };
-            addToCart(product); // Add product to cart
-        }
-    });
-
-    // Handle "Show Options" buttons for modal-based selection
-    const showOptionsButtons = document.querySelectorAll('.show-options-button');
-    showOptionsButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const category = e.target.closest('.product-item').getAttribute('data-category');
-            showOptions(category); // Show modal for the selected category
-        });
-    });
-
-    // Optionally: If you have category buttons that open a modal directly
-    const categoryButtons = document.querySelectorAll('.category-button'); // Only if you use category-specific product options
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.getAttribute('data-category');
-            showOptions(category); // Show options for selected category
-        });
-    });
-});
 
 // Function to remove an item from the cart
 function removeFromCart(index) {
