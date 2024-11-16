@@ -28,77 +28,82 @@ const productOptions = {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderCart(); // Render cart items if on the cart page
-
+    
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
-    const amountElement = document.getElementById('amount'); // Find the element
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+
+    // Add event listeners for category buttons
+    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            showOptions(category);
+        });
+    });
     
-    if (amountElement) { // Ensure the element exists
-        amountElement.textContent = totalAmount 
-            ? parseFloat(totalAmount).toFixed(2) 
-            : '0.00'; // Set its content
-    }
-    
-    // Add event listener for "Add to Cart" and "Show Options" buttons dynamically
-    const productsContainer = document.getElementById('products');
-    productsContainer.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('add-to-cart-button')) {
+    const addToCartButtons = document.querySelectorAll('.product-item button');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const productElement = button.parentElement;
             const product = {
-                name: e.target.getAttribute('data-name'),
-                price: parseFloat(e.target.getAttribute('data-price')),
-                image: e.target.getAttribute('data-image'),
+                name: productElement.querySelector('h3').textContent,
+                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
+                image: productElement.querySelector('img').src
             };
-            addToCart(product); // Add product to cart
-        } else if (e.target && e.target.classList.contains('category-button')) {
-            const category = e.target.getAttribute('data-category');
-            showOptions(category); // Show modal for the selected category
-        }
+            addToCart(product);
+        });
     });
 });
 
-// Modal handling for product options
-function toggleModal(isVisible) {
-    const modal = document.getElementById('productOptionsModal');
-    modal.style.display = isVisible ? 'flex' : 'none';
-}
-
 function showOptions(category) {
+    console.log("showOptions called for category:", category); // For debugging
     const modalOptionsContainer = document.getElementById('modalOptions');
     const modalTitle = document.getElementById('modalTitle');
 
-    modalOptionsContainer.innerHTML = ''; // Clear existing options
-    modalTitle.textContent = `Choose Your Option for ${category.replace(/sticker|keychain|photocard/gi, '').toUpperCase()}`;
+    // Clear any existing options in the modal
+    modalOptionsContainer.innerHTML = '';
 
-    const options = productOptions[category];
-    if (!options) {
-        console.error(`No options found for category: ${category}`);
-        return;
+    console.log(modalTitle); // Check if the modal title element is being found
+
+    if (modalTitle) {
+        modalTitle.textContent = `Choose Your Option for ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+    } else {
+        console.error("Modal title element not found.");
     }
 
-    options.forEach((option) => {
+    // Get the product options for the chosen category
+    const options = productOptions[category];
+
+    // Dynamically generate HTML for each option
+    options.forEach(option => {
+        // Create a div for each option
         const optionDiv = document.createElement('div');
         optionDiv.classList.add('option');
+        
+        // Set the HTML for the option with the image
         optionDiv.innerHTML = `
             <img src="${option.image}" alt="${option.name}" class="option-image">
             <p>${option.name} - $${option.price.toFixed(2)}</p>
             <button class="add-to-cart-button" data-name="${option.name}" data-price="${option.price}" data-image="${option.image}">Add to Cart</button>
         `;
+        
+        // Append the option to the modal container
         modalOptionsContainer.appendChild(optionDiv);
     });
 
-    // Ensure buttons within the modal add to the cart
-    modalOptionsContainer.addEventListener('click', (e) => {
-        if (e.target && e.target.classList.contains('add-to-cart-button')) {
+    const addToCartButtons = modalOptionsContainer.querySelectorAll('.add-to-cart-button');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
             const product = {
                 name: e.target.getAttribute('data-name'),
                 price: parseFloat(e.target.getAttribute('data-price')),
-                image: e.target.getAttribute('data-image'),
+                image: e.target.getAttribute('data-image')
             };
             addToCart(product);
-            toggleModal(false); // Close modal after adding
-        }
+        });
     });
 
-    toggleModal(true);
+    toggleModal(true); // Show the modal
 }
 
 function closeModal() {
