@@ -162,47 +162,6 @@ function removeFromCart(index) {
     renderCart();
 }
 
-function searchProducts() {
-    const searchInput = document.getElementById('searchBar').value.toLowerCase();
-    const productCards = document.querySelectorAll('.product-card');
-
-    productCards.forEach(card => {
-        const productName = card.dataset.name.toLowerCase();
-        if (productName.includes(searchInput)) {
-            card.style.display = 'block'; // Show matching products
-        } else {
-            card.style.display = 'none'; // Hide non-matching products
-        }
-    });
-}
-
-function filterProducts() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
-    const categoryFilter = document.getElementById('categoryFilter').value;
-    const priceFilter = document.getElementById('priceFilter').value;
-
-    // Select all product items
-    const products = document.querySelectorAll('.product-item');
-
-    products.forEach(product => {
-        const productName = product.querySelector('h3').textContent.toLowerCase();
-        const productCategory = product.closest('section')?.querySelector('h2')?.textContent || '';
-        const productPrice = parseFloat(product.querySelector('p').textContent.replace('$', ''));
-
-        // Check if the product matches the filters
-        const matchesSearch = productName.includes(searchInput);
-        const matchesCategory = categoryFilter === '' || productCategory === categoryFilter;
-        const matchesPrice = priceFilter === '' || productPrice <= parseFloat(priceFilter);
-
-        // Show or hide the product based on filter conditions
-        if (matchesSearch && matchesCategory && matchesPrice) {
-            product.style.display = 'block';
-        } else {
-            product.style.display = 'none';
-        }
-    });
-}
-
 // Remove footer after scrolling down
 let lastScrollTop = 0; // Keeps track of the last scroll position
 const footer = document.querySelector('footer'); // Get the footer element
