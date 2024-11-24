@@ -21,9 +21,13 @@ header {
 }
 
 ,product-container {
-    display: grid; /* Use CSS Grid */
-    grid-template-columns: 1fr 4fr; /* 1 part for categories, 4 parts for products */
-    gap: 20px; /* Spacing between categories and products */
+    display: flex; /* Enable Flexbox */
+    gap: 20px; /* Add spacing between categories and products */
+    align-items: flex-start; /* Align categories and products at the top */
+}
+
+.category-column {
+    width: 20%;
 }
 
 .category-column h3 {
@@ -49,6 +53,7 @@ header {
 }
 
 .product-grid {
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
