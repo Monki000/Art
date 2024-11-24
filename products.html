@@ -18,21 +18,21 @@
         </nav>
     </header>
 
-    <div class="category-column">
-        <ul>
-            <li onclick="filterByCategory('all')">All</li>
-            <li onclick="filterByCategory('stickers')">Stickers</li>
-            <li onclick="filterByCategory('keychains')">Keychains</li>
-            <li onclick="filterByCategory('a5prints')">A5 Prints</li>
-            <li onclick="filterByCategory('a6prints')">A6 Prints</li>
-            <li onclick="filterByCategory('squareprints')">Square Prints</li>
-            <li onclick="filterByCategory('photocards')">Photocards</li>
-            <li onclick="filterByCategory('acrylicstandees')">Acrylic Standees</li>
-            <li onclick="filterByCategory('stickersheets')">Sticker sheets</li>
-        </ul>
-    </div>
-
     <section id="products">
+        <div class="category-column">
+            <ul>
+                <li onclick="filterByCategory('all')">All</li>
+                <li onclick="filterByCategory('stickers')">Stickers</li>
+                <li onclick="filterByCategory('keychains')">Keychains</li>
+                <li onclick="filterByCategory('a5prints')">A5 Prints</li>
+                <li onclick="filterByCategory('a6prints')">A6 Prints</li>
+                <li onclick="filterByCategory('squareprints')">Square Prints</li>
+                <li onclick="filterByCategory('photocards')">Photocards</li>
+                <li onclick="filterByCategory('acrylicstandees')">Acrylic Standees</li>
+                <li onclick="filterByCategory('stickersheets')">Sticker sheets</li>
+            </ul>
+        </div>
+        
         <div class="product-grid">
             <div class="product-item" data-category="stickers">
                 <img src="images/CSM.jpeg" alt="CSM Sticker">
@@ -76,8 +76,6 @@
                 <p>$5.00</p>
                 <button class="add-to-cart-button" data-name="Atsushi x Akutagawa Sticker" data-price="5.00" data-image="images/BSDGuys.jpeg">Add to Cart</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="keychains">
                 <img src="images/CSM.jpeg" alt="CSM Keychain">
                 <h3>Chainsaw Man Keychain</h3>
@@ -90,8 +88,6 @@
                 <p>$7.00</p>
                 <button class="category-button" data-category="spyxfamilykeychain" onclick="showOptions('spyxfamilykeychain')">Show Options</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="a5prints">
                 <img src="images/Frieren.jpeg" alt="Frieren A5 Print">
                 <h3>Frieren A5 Print</h3>
@@ -104,8 +100,6 @@
                 <p>$8.00</p>
                 <button class="add-to-cart-button" data-name="Bocchi A5 Print" data-price="8.00" data-image="images/Bocchi.jpeg">Add to Cart</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="a6prints">
                 <img src="images/Mitaka.jpeg" alt="Asa Mitaka A6 Print">
                 <h3>Asa Mitaka A6 Print</h3>
@@ -124,8 +118,6 @@
                 <p>$4.00</p>
                 <button class="add-to-cart-button" data-name="Ganyu A6 Print" data-price="4.00" data-image="images/Ganyu.jpeg">Add to Cart</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="squareprints">
                 <img src="images/Ai.jpeg" alt="Hoshino Ai Square Print">
                 <h3>Hoshino Ai Square Print</h3>
@@ -138,16 +130,12 @@
                 <p>$5.00</p>
                 <button class="add-to-cart-button" data-name="Honkai Star Rail Square Print" data-price="5.00" data-image="images/HSR.jpeg">Add to Cart</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="photocards">
                 <img src="images/Oshinoko.jpeg" alt="Oshinoko Photocard">
                 <h3>Oshi No Ko Photocards</h3>
                 <p>$4.00</p>
                 <button class="category-button" data-category="oshinokophotocard" onclick="showOptions('oshinokophotocard')">Show Options</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="acrylicstandees">
                 <img src="images/RaidenKuromi.jpeg" alt="Raiden Kuromi Acrylic Standee">
                 <h3>Raiden Kuromi Acrylic Standee</h3>
@@ -160,8 +148,6 @@
                 <p>$15.00</p>
                 <button class="add-to-cart-button" data-name="Kokomi Melody Acrylic Standee" data-price="15.00" data-image="images/KokomiMelody.jpeg">Add to Cart</button>
             </div>
-        </div>
-        <div class="product-grid">
             <div class="product-item" data-category="stickersheets">
                 <img src="images/DinD.jpeg" alt="Delicious in Dungeon Sticker Sheet">
                 <h3>Delicious in Dungeon Sticker Sheet</h3>
