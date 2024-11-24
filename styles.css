@@ -14,41 +14,35 @@ header {
     text-align: center;
 }
 
-/* Style the search and filter container */
-#search-filter-container {
-    display: flex;
-    gap: 10px;
-    margin: 10px 20px;
-    justify-content: flex-end; /* Align to the right */
+.category-column {
+    width: 200px;
+    margin-right: 20px;
+    border-right: 1px solid #ddd;
+    padding-right: 10px;
 }
 
-/* Style inputs and dropdowns */
-#searchInput, #categoryFilter, #priceFilter {
-    padding: 10px;
+.category-column h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.category-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-column li {
+    margin-bottom: 10px;
+    cursor: pointer;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    color: #333;
+    transition: color 0.3s;
 }
 
-#searchInput {
-    width: 300px; /* Give the search bar more space */
+.category-column li:hover {
+    color: #007bff;
 }
 
-#categoryFilter, #priceFilter {
-    width: 150px; /* Standardize dropdown widths */
-}
-
-/* Optional: Add responsiveness for smaller screens */
-@media (max-width: 768px) {
-    #search-filter-container {
-        flex-direction: column; /* Stack search bar and filters */
-        align-items: flex-end; /* Align them to the right */
-    }
-
-    #searchInput {
-        width: 100%; /* Make search bar full width */
-    }
-}
 
 #tong-icon {
     width: 100px;
