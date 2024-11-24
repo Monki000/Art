@@ -14,6 +14,12 @@ header {
     text-align: center;
 }
 
+#tong-icon {
+    width: 100px;
+    height: auto;
+    margin-right: 15px;
+}
+
 ,product-container {
     display: grid; /* Use CSS Grid */
     grid-template-columns: 1fr 4fr; /* 1 part for categories, 4 parts for products */
@@ -40,28 +46,6 @@ header {
 
 .category-column li:hover {
     color: #007bff;
-}
-
-
-#tong-icon {
-    width: 100px;
-    height: auto;
-    margin-right: 15px;
-}
-
-nav a {
-    color: #fff;
-    margin: 0 1rem;
-    text-decoration: none;
-}
-
-#cart-icon {
-    width: 50px; /* Adjust size as needed */
-    height: auto;
-    position: absolute; /* Position it absolutely */
-    right: 20px; /* Adjust right spacing */
-    top: 20px; /* Adjust top spacing */
-    cursor: pointer; /* Change cursor to pointer */
 }
 
 .product-grid {
@@ -97,6 +81,31 @@ nav a {
 
 .product-item button:hover {
     background-color: #e60023;
+}
+
+@media (max-width: 768px) {
+    .product-container {
+        display: block; /* Stack categories and products */
+    }
+
+    .category-column {
+        margin-bottom: 20px; /* Add spacing between categories and products */
+    }
+}
+
+nav a {
+    color: #fff;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+#cart-icon {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    position: absolute; /* Position it absolutely */
+    right: 20px; /* Adjust right spacing */
+    top: 20px; /* Adjust top spacing */
+    cursor: pointer; /* Change cursor to pointer */
 }
 
 .cart-items {
