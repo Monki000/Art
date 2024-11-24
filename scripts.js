@@ -16,7 +16,38 @@ document.addEventListener('DOMContentLoaded', () => {
             addToCart(product);
         });
     });
+
+    const categoryItems = document.querySelectorAll('.category-column li');
+    categoryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const selectedCategory = item.textContent.toLowerCase(); // Get the category name (e.g., "stickers", "keychains", etc.)
+            filterByCategory(selectedCategory);
+        });
+    });
 });
+
+// Function to filter products by category
+function filterByCategory(category) {
+    // Get all product items
+    const products = document.querySelectorAll('.product-item');
+
+    // If 'all' is selected, show all products
+    if (category === 'all') {
+        products.forEach(product => {
+            product.style.display = 'block'; // Show all products
+        });
+    } else {
+        // Otherwise, filter products by category
+        products.forEach(product => {
+            const productCategory = product.getAttribute('data-category');
+            if (productCategory === category) {
+                product.style.display = 'block'; // Show product if it matches the selected category
+            } else {
+                product.style.display = 'none'; // Hide product if it doesn't match
+            }
+        });
+    }
+}
 
 // Array to hold cart items
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
