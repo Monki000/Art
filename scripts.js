@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
     document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
 
-    const addToCartButtons = document.querySelectorAll('.add-to-cart button');
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             const productElement = button.parentElement;
