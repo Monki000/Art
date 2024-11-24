@@ -26,6 +26,35 @@ const productOptions = {
     // Add more categories as needed
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart(); // Render cart items if on the cart page
+    
+    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+
+    // Add event listeners for category buttons
+    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            showOptions(category);
+        });
+    });
+    
+    const addToCartButtons = document.querySelectorAll('.singleaddtocart button');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const productElement = button.parentElement;
+            const product = {
+                name: productElement.querySelector('h3').textContent,
+                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
+                image: productElement.querySelector('img').src
+            };
+            addToCart(product);
+        });
+    });
+});
+
 function toggleModal(isVisible) {
     const modal = document.getElementById('productOptionsModal');
     modal.style.display = isVisible ? 'flex' : 'none';
@@ -126,41 +155,38 @@ function renderCart() {
     localStorage.setItem('totalAmount', total.toFixed(2));
 }
 
-// Inside scripts.js or a separate script tag in checkout.html
-document.addEventListener('DOMContentLoaded', () => {
-    renderCart(); // Render cart items if on the cart page
-    
-    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
-    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
-
-    // Add event listeners for category buttons
-    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.getAttribute('data-category');
-            showOptions(category);
-        });
-    });
-    
-    const addToCartButtons = document.querySelectorAll('.singleaddtocart button');
-    addToCartButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const productElement = button.parentElement;
-            const product = {
-                name: productElement.querySelector('h3').textContent,
-                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
-                image: productElement.querySelector('img').src
-            };
-            addToCart(product);
-        });
-    });
-});
-
 // Function to remove an item from the cart
 function removeFromCart(index) {
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
+}
+
+function filterProducts() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const categoryFilter = document.getElementById('categoryFilter').value;
+    const priceFilter = document.getElementById('priceFilter').value;
+
+    // Select all product items
+    const products = document.querySelectorAll('.product-item');
+
+    products.forEach(product => {
+        const productName = product.querySelector('h3').textContent.toLowerCase();
+        const productCategory = product.closest('section')?.querySelector('h2')?.textContent || '';
+        const productPrice = parseFloat(product.querySelector('p').textContent.replace('$', ''));
+
+        // Check if the product matches the filters
+        const matchesSearch = productName.includes(searchInput);
+        const matchesCategory = categoryFilter === '' || productCategory === categoryFilter;
+        const matchesPrice = priceFilter === '' || productPrice <= parseFloat(priceFilter);
+
+        // Show or hide the product based on filter conditions
+        if (matchesSearch && matchesCategory && matchesPrice) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
 }
 
 // Remove footer after scrolling down
