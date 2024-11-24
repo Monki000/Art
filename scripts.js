@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    const addToCartButtons = document.querySelectorAll('.product-item button');
+    const addToCartButtons = document.querySelectorAll('.addto-cart button');
     addToCartButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             const productElement = button.parentElement;
