@@ -26,34 +26,10 @@ const productOptions = {
     // Add more categories as needed
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    renderCart(); // Render cart items if on the cart page
-    
-    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
-    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
-
-    // Add event listeners for category buttons
-    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.getAttribute('data-category');
-            showOptions(category);
-        });
-    });
-    
-    const addToCartButtons = document.querySelectorAll('.addtocart-button');
-    addToCartButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            const productElement = button.parentElement;
-            const product = {
-                name: productElement.querySelector('h3').textContent,
-                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
-                image: productElement.querySelector('img').src
-            };
-            addToCart(product);
-        });
-    });
-});
+function toggleModal(isVisible) {
+    const modal = document.getElementById('productOptionsModal');
+    modal.style.display = isVisible ? 'flex' : 'none';
+}
 
 function showOptions(category) {
     console.log("showOptions called for category:", category); // For debugging
@@ -149,6 +125,36 @@ function renderCart() {
     
     localStorage.setItem('totalAmount', total.toFixed(2));
 }
+
+// Inside scripts.js or a separate script tag in checkout.html
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart(); // Render cart items if on the cart page
+    
+    const totalAmount = localStorage.getItem('totalAmount'); // Retrieve total from local storage
+    document.getElementById('amount').textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+
+    // Add event listeners for category buttons
+    const categoryButtons = document.querySelectorAll('.category-button'); // Assuming you give category buttons a class
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const category = button.getAttribute('data-category');
+            showOptions(category);
+        });
+    });
+    
+    const addToCartButtons = document.querySelectorAll('.product-item button');
+    addToCartButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const productElement = button.parentElement;
+            const product = {
+                name: productElement.querySelector('h3').textContent,
+                price: parseFloat(productElement.querySelector('p').textContent.replace('$', '')),
+                image: productElement.querySelector('img').src
+            };
+            addToCart(product);
+        });
+    });
+});
 
 // Function to remove an item from the cart
 function removeFromCart(index) {
