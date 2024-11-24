@@ -116,7 +116,7 @@ function closeModal() {
 }
 
 function filterByCategory(category) {
-    const productCards = document.querySelectorAll('.product-card');
+    const productCards = document.querySelectorAll('.product-item');
 
     productCards.forEach(card => {
         // Show all products if 'all' is clicked
