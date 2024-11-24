@@ -18,6 +18,32 @@
         </nav>
     </header>
 
+    <div id="search-filter-container">
+    <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search for products..." 
+        onkeyup="filterProducts()"
+    />
+
+    <select id="categoryFilter" onchange="filterProducts()">
+        <option value="">All Categories</option>
+        <option value="Stickers">Stickers</option>
+        <option value="Keychains">Keychains</option>
+        <option value="A5 Prints">A5 Prints</option>
+        <option value="A6 Prints">A6 Prints</option>
+        <option value="Photocards">Photocards</option>
+        <option value="Acrylic Standees">Acrylic Standees</option>
+    </select>
+
+    <select id="priceFilter" onchange="filterProducts()">
+        <option value="">All Prices</option>
+        <option value="5">Below $5</option>
+        <option value="10">Below $10</option>
+        <option value="15">Below $15</option>
+    </select>
+</div>
+
     <section id="products">
         <h2>Stickers</h2>
         <div class="product-grid">
