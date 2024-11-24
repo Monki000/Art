@@ -20,7 +20,7 @@ header {
     margin-right: 15px;
 }
 
-,product-container {
+.product-container {
     display: flex; /* Enable Flexbox */
     gap: 20px; /* Add spacing between categories and products */
     align-items: flex-start; /* Align categories and products at the top */
