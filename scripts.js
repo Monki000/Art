@@ -162,6 +162,20 @@ function removeFromCart(index) {
     renderCart();
 }
 
+function searchProducts() {
+    const searchInput = document.getElementById('searchBar').value.toLowerCase();
+    const productCards = document.querySelectorAll('.product-card');
+
+    productCards.forEach(card => {
+        const productName = card.dataset.name.toLowerCase();
+        if (productName.includes(searchInput)) {
+            card.style.display = 'block'; // Show matching products
+        } else {
+            card.style.display = 'none'; // Hide non-matching products
+        }
+    });
+}
+
 function filterProducts() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const categoryFilter = document.getElementById('categoryFilter').value;
