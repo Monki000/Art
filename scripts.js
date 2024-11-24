@@ -115,6 +115,19 @@ function closeModal() {
     toggleModal(false); // Hide the modal
 }
 
+function filterByCategory(category) {
+    const productCards = document.querySelectorAll('.product-card');
+
+    productCards.forEach(card => {
+        // Show all products if 'all' is clicked
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
 // Array to hold cart items
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
