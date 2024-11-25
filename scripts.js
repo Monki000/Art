@@ -138,3 +138,11 @@ if (checkoutButton) {
         window.location.href = 'checkout.html'; // Redirect to the checkout page
     });
 }
+
+// Handle checkout back button click
+const checkoutbackButton = document.getElementById('checkoutbackbutton');
+if (checkoutbackButton) {
+    checkoutbackButton.addEventListener('click', () => {
+        window.location.href = 'cart.html'; // Redirect to the cart page
+    });
+}
