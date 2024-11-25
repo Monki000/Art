@@ -37,6 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryItems = document.querySelectorAll('.category-column li');
     categoryItems.forEach(item => {
         item.addEventListener('click', () => {
+            // Remove 'selected' class from all items
+            categoryItems.forEach(i => i.classList.remove('selected'));
+            
+            // Add 'selected' class to the clicked item
+            item.classList.add('selected');
+            
             const selectedCategory = item.textContent.toLowerCase().replace(/\s+/g, ''); // Get the category from text
             filterByCategory(selectedCategory);
         });
