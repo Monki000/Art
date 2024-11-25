@@ -158,6 +158,11 @@ nav a {
     }
 }
 
+.checkout-container {
+    display: flex;
+    gap: 20px;
+}
+
 footer {
     background: #f1a2b7;
     color: #fff;
