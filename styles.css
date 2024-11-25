@@ -52,6 +52,11 @@ header {
     color: #007bff;
 }
 
+.category-column li.selected {
+    color: blue; /* Change the text color to blue */
+    font-weight: bold; /* Optional: make the text bold for emphasis */
+}
+
 .product-grid {
     width: 80%;
     display: grid;
