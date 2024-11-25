@@ -188,6 +188,13 @@ if (checkoutbackButton) {
     });
 }
 
+const nextButton = document.getElementById('next-button');
+if (nextButton) {
+    nextButton.addEventListener('click', () => {
+        window.location.href = 'payment.html'; // Redirect to the payment page
+    });
+}
+
 document.getElementById('paypal-button').addEventListener('click', async () => {
     try {
         const response = await fetch('/create-payment', {
