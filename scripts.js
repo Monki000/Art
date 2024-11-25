@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add 'selected' class to the clicked item
             item.classList.add('selected');
             
-            const selectedCategory = item.textContent.toLowerCase().replace(/\s+/g, ''); // Get the category from text
+            const selectedCategory = item.textContent.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ''); // Get the category from text
             filterByCategory(selectedCategory);
         });
     });
