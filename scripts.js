@@ -45,7 +45,7 @@ function filterByCategory(category) {
         // Otherwise, filter products by category
         products.forEach(product => {
             const productCategory = product.getAttribute('data-category').split(' ');
-            if (productCategory === category) {
+            if (productCategories.includes(category)) {
                 product.style.display = 'block'; // Show product if it matches the selected category
             } else {
                 product.style.display = 'none'; // Hide product if it doesn't match
