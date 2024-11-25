@@ -61,13 +61,24 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Update shipping price
         shippingPriceElement.textContent = shippingCost.toFixed(2);
+
+        updateTotal(subtotal, shippingCost);
     });
 
-    const totalElement = document.getElementById('total-amount');
-    if (totalElement) {
-        const subtotal = parseFloat(totalAmount || '0'); // Use subtotal from localStorage
-        totalElement.textContent = (subtotal + shippingCost).toFixed(2); // Calculate and display total
-    }    
+    if (subtotalElement) {
+        subtotalElement.textContent = subtotal.toFixed(2);
+    }
+
+    // Update total price (subtotal + shipping cost)
+    function updateTotal(subtotal, shippingCost) {
+        if (totalElement) {
+            totalElement.textContent = (subtotal + shippingCost).toFixed(2); // Update total with shipping
+        }
+    }
+
+    // Initial total update
+    updateTotal(subtotal, shippingCost);
+
 });
 
 // Function to filter products by category
