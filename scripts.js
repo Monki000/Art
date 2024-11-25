@@ -7,18 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
         subtotalElement.textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
     }
 
-    const shipping = 5.00; // Example placeholder for shipping, replace dynamically if needed
-    const totalElement = document.getElementById('total-amount');
-    if (totalElement) {
-        const subtotal = parseFloat(totalAmount || '0'); // Use subtotal from localStorage
-        totalElement.textContent = (subtotal + shipping).toFixed(2); // Calculate and display total
-    }
-
-    const shippingElement = document.getElementById('shipping');
-    if (shippingElement) {
-        shippingElement.textContent = shipping.toFixed(2); // Set Shipping
-    }
-
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -47,6 +35,37 @@ document.addEventListener('DOMContentLoaded', () => {
             filterByCategory(selectedCategory);
         });
     });
+
+    const countrySelect = document.getElementById('checkoutcountry');
+    const shippingPriceElement = document.getElementById('shipping-price');
+    
+    // Initial shipping cost
+    let shippingCost = 5.00;
+    
+    // Function to update shipping price based on selected country
+    countrySelect.addEventListener('change', (e) => {
+        const selectedCountry = e.target.value;
+        
+        // Example shipping cost changes based on country
+        if (selectedCountry === 'USA') {
+            shippingCost = 5.00;
+        } else if (selectedCountry === 'Canada') {
+            shippingCost = 8.00;
+        } else if (selectedCountry === 'Singapore') {
+            shippingCost = 10.00;
+        } else if (selectedCountry === 'UK') {
+            shippingCost = 7.00;
+        }
+        
+        // Update shipping price
+        shippingPriceElement.textContent = shippingCost.toFixed(2);
+    });
+
+    const totalElement = document.getElementById('total-amount');
+    if (totalElement) {
+        const subtotal = parseFloat(totalAmount || '0'); // Use subtotal from localStorage
+        totalElement.textContent = (subtotal + shippingCost).toFixed(2); // Calculate and display total
+    }    
 });
 
 // Function to filter products by category
