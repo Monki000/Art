@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update shipping price
         shippingPriceElement.textContent = shippingCost.toFixed(2);
 
-        updateTotal(subtotal, shippingCost);
+        updateTotal();
     });
 
     if (subtotalElement) {
@@ -70,9 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update total price (subtotal + shipping cost)
-    function updateTotal(subtotal, shippingCost) {
-        if (totalElement) {
-            totalElement.textContent = (subtotal + shippingCost).toFixed(2); // Update total with shipping
+    function updateTotal() {
+        const total = subtotal + shippingCost;
+
+        // Update the order summary values
+        if (totalAmountElement) {
+            totalAmountElement.textContent = total.toFixed(2);  // Update total in the order summary
         }
     }
 
