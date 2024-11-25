@@ -56,7 +56,7 @@ function filterByCategory(category) {
     } else {
         // Otherwise, filter products by category
         products.forEach(product => {
-            const productCategory = product.getAttribute('data-category').split(' ');
+            const productCategories = product.getAttribute('data-category').split(' ');
             if (productCategories.includes(category)) {
                 product.style.display = 'block'; // Show product if it matches the selected category
             } else {
