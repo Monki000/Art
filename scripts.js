@@ -48,13 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Example shipping cost changes based on country
         if (selectedCountry === 'USA') {
-            shippingCost = 5.00;
-        } else if (selectedCountry === 'Canada') {
-            shippingCost = 8.00;
-        } else if (selectedCountry === 'Singapore') {
             shippingCost = 10.00;
+        } else if (selectedCountry === 'Canada') {
+            shippingCost = 10.00;
+        } else if (selectedCountry === 'Singapore') {
+            shippingCost = 0.00;
         } else if (selectedCountry === 'UK') {
-            shippingCost = 7.00;
+            shippingCost = 10.00;
+        } else if (selectedCountry === 'Malaysia') {
+            shippingCost = 5.00;
         }
         
         // Update shipping price
