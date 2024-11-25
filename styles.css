@@ -237,6 +237,10 @@ nav a {
     font-size: 1.2rem;
 }
 
+#next-button, #checkoutbackbutton {
+    margin: 10px; /* Adds space all around the buttons */
+}
+
 footer {
     background: #f1a2b7;
     color: #fff;
