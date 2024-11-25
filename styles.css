@@ -168,6 +168,46 @@ nav a {
     gap: 20px;
 }
 
+#checkoutform {
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+#checkoutform h2 {
+    margin-bottom: 10px;
+}
+
+#checkoutform label {
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+#checkoutform input, #checkoutform select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#checkoutform button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#checkoutform button:hover {
+    background-color: #45a049;
+}
+
 .sidebar {
     width: 30%;
     padding: 20px;
