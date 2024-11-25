@@ -53,7 +53,7 @@ header {
 }
 
 .category-column li.selected {
-    color: #f1a2b7; /* Change the text color to blue */
+    color: #f1a2b7;
     font-weight: bold; /* Optional: make the text bold for emphasis */
 }
 
@@ -170,9 +170,7 @@ nav a {
 
 #checkoutform {
     padding: 20px;
-    background-color: #f9f9f9;
-    width: 100%;
-    max-width: 400px;
+    width: 70%;
     border-radius: 8px;
 }
 
@@ -197,7 +195,7 @@ nav a {
 #checkoutform button {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50;
+    background-color: #f1a2b7;
     color: white;
     border: none;
     border-radius: 4px;
@@ -205,7 +203,7 @@ nav a {
 }
 
 #checkoutform button:hover {
-    background-color: #45a049;
+    background-color: #a85b6f;
 }
 
 .sidebar {
