@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AdibDy-fRpkYxJ3Oua5BFX7CLYHnFYH9KugCARe99HgCVz9Q4GmXRMtzgQOcgTLMwNvd6Y6Q_jA63iVd&components=buttons"></script>
+</head>
+    
+<body>
+    <header>
+        <h1>Payment</h1>
+    </header>
+
+    <h1>Complete Your Payment</h1>
+    <div id="paypal-button-container"></div>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '20.00'  // Example: total payment amount
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // This callback is executed after the payment is successful
+                    alert('Payment successful! Order ID: ' + details.id);
+
+                    // Send order details to the backend to process the order
+                    fetch('/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            orderID: details.id,
+                            totalAmount: details.purchase_units[0].amount.value
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Order processed successfully:', data);
+                        window.location.href = '/order-confirmation';  // Redirect to order confirmation page
+                    })
+                    .catch(err => console.error('Error processing order:', err));
+                });
+            },
+            onError: function(err) {
+                console.error('Error during PayPal transaction:', err);
+            }
+        }).render('#paypal-button-container');
+    </script>  
+    <script src="scripts.js"></script>
+</body>
+</html>
