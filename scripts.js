@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryItems = document.querySelectorAll('.category-column li');
     categoryItems.forEach(item => {
         item.addEventListener('click', () => {
-            const selectedCategory = item.textContent.toLowerCase(); // Get the category name (e.g., "stickers", "keychains", etc.)
+            const selectedCategory = item.getAttribute('data-category'); // Get the data category
             filterByCategory(selectedCategory);
         });
     });
