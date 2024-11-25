@@ -49,11 +49,11 @@ header {
 }
 
 .category-column li:hover {
-    color: #007bff;
+    color: #f1a2b7;
 }
 
 .category-column li.selected {
-    color: blue; /* Change the text color to blue */
+    color: #f1a2b7; /* Change the text color to blue */
     font-weight: bold; /* Optional: make the text bold for emphasis */
 }
 
