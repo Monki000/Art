@@ -2,9 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCart(); // Render cart items if on the cart page
 
     const totalAmount = localStorage.getItem('totalAmount');
-    const amountElement = document.getElementById('amount');
-    if (amountElement) {
-        amountElement.textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+    const subtotalElement = document.getElementById('subtotal');
+    if (subtotalElement) {
+        subtotalElement.textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+    }
+
+    const shipping = 5.00; // Example placeholder for shipping, replace dynamically if needed
+    const totalElement = document.getElementById('total-amount');
+    if (totalElement) {
+        const subtotal = parseFloat(totalAmount || '0'); // Use subtotal from localStorage
+        totalElement.textContent = (subtotal + shipping).toFixed(2); // Calculate and display total
+    }
+
+    const shippingElement = document.getElementById('shipping');
+    if (shippingElement) {
+        shippingElement.textContent = shipping.toFixed(2); // Set Shipping
     }
 
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
