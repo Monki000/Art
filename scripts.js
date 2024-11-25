@@ -187,3 +187,25 @@ if (checkoutbackButton) {
         window.location.href = 'cart.html'; // Redirect to the cart page
     });
 }
+
+document.getElementById('paypal-button').addEventListener('click', async () => {
+    try {
+        const response = await fetch('/create-payment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                // You can include cart or other data here
+            })
+        });
+        const data = await response.json();
+        if (data.status === 'CREATED') {
+            // Redirect user to PayPal's approval URL
+            window.location.href = data.links.find(link => link.rel === 'approve').href;
+        }
+    } catch (error) {
+        console.error("Error processing payment:", error);
+    }
+});
+
