@@ -181,6 +181,19 @@ nav a {
     margin-bottom: 1rem;
 }
 
+/* Totals Section */
+.order-totals p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin: 8px 0;
+}
+
+.order-totals .total {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 footer {
     background: #f1a2b7;
     color: #fff;
