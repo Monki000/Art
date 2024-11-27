@@ -6,6 +6,38 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPageNavigation();
     setupFooterBehavior();
     setupPaymentIntegration();
+
+    const nextButton = document.getElementById('next-button');
+    const checkoutForm = document.getElementById('shipping-form');
+
+    if (nextButton && checkoutForm) {
+        nextButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent form from submitting and reloading the page
+
+            // Gather form data
+            const formData = new FormData(checkoutForm);
+            const shippingData = Object.fromEntries(formData.entries()); // Convert to an object
+
+            // Save form data in localStorage or send it to the server via AJAX
+            localStorage.setItem('shippingData', JSON.stringify(shippingData));
+
+            // Redirect to the payment page
+            window.location.href = 'payment.html';
+        });
+    }
+
+    const shippingData = JSON.parse(localStorage.getItem('shippingData'));
+
+    if (shippingData) {
+        // Display shipping details or use them as needed
+        console.log('Shipping Data:', shippingData);
+
+        // Example: Display name and address
+        document.getElementById('shipping-name').textContent = `${shippingData['first-name']} ${shippingData['last-name']}`;
+        document.getElementById('shipping-address').textContent = `${shippingData['checkoutaddress']}, ${shippingData['checkoutcity']}, ${shippingData['checkoutcountry']}`;
+    } else {
+        console.warn('No shipping data found.');
+    }
 });
 
 // === Initialization Functions ===
@@ -151,7 +183,6 @@ function filterByCategory(category) {
 function setupPageNavigation() {
     const checkoutButton = document.getElementById('checkout-button');
     const checkoutBackButton = document.getElementById('checkoutbackbutton');
-    const nextButton = document.getElementById('next-button');
 
     if (checkoutButton) {
         checkoutButton.addEventListener('click', () => {
@@ -162,12 +193,6 @@ function setupPageNavigation() {
     if (checkoutBackButton) {
         checkoutBackButton.addEventListener('click', () => {
             window.location.href = 'cart.html';
-        });
-    }
-
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            window.location.href = 'payment.html';
         });
     }
 }
