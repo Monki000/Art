@@ -164,7 +164,7 @@ function setupCategoryFilter() {
         item.addEventListener('click', () => {
             categoryItems.forEach((i) => i.classList.remove('selected'));
             item.classList.add('selected');
-            const category = item.textContent.toLowerCase().trim().replace(/\s+/g, '');
+            const category = item.textContent.toLowerCase().trim().replace(/\s+/g, '').replace(/\*/g, '');
             filterByCategory(category);
         });
     });
