@@ -78,16 +78,21 @@ header {
     border: 1px solid #ccc;
     padding: 1rem;
     text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Distribute space to push the button to the bottom */
+    height: 100%;
 }
 
 .product-item img {
     width: 100%; /* Set desired width */
     height: auto; /* Maintain aspect ratio */
     max-width: 100%; /* Ensure the image doesn't overflow */
+    margin-bottom: 10px;
 }
 
 .product-item button {
-    bottom: 10px;
+    margin-top: auto;
     padding: 8px 16px;
     font-size: 14px;
     color: #fff;
