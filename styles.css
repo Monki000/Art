@@ -1,6 +1,9 @@
 /* Basic styling for the layout */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lora", serif;
+    font-optical-sizing: auto;
+    font-weight: <400>;
+    font-style: normal;
     margin: 0;
     padding: 0;
     background-color: #faf0ee;
