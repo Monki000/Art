@@ -1,53 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
     initialiseCartPage();
-
     setupCheckoutForm();
-
     setupCartFunctionality();
-
     setupCategoryFilter();
+    setupPageNavigation();
+    setupFooterBehavior();
+    setupPaymentIntegration();
 });
 
-// Initialise the cart page (set default subtotal, render cart, etc.)
-function initialiseCartPage() {
-    renderCart(); // Render cart items if on the cart page
+// === Initialization Functions ===
 
-    const totalAmount = localStorage.getItem('totalAmount');
+// Initialize the cart page (set subtotal, render cart, etc.)
+function initialiseCartPage() {
+    renderCart();
+
     const subtotalElement = document.getElementById('subtotal');
+    const totalAmount = localStorage.getItem('totalAmount') || '0.00';
     if (subtotalElement) {
-        subtotalElement.textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
+        subtotalElement.textContent = parseFloat(totalAmount).toFixed(2);
     }
 }
 
-// Handle the checkout form (shipping cost calculations and total updates)
+// === Checkout Form Functions ===
+
 function setupCheckoutForm() {
     const countrySelect = document.getElementById('checkoutcountry');
     const shippingPriceElement = document.getElementById('shipping-price');
-    const totalAmountElement = localStorage.getItem('total-amount');
+    const totalAmountElement = document.getElementById('total-amount');
     const subtotalElement = document.getElementById('subtotal');
-    
-    // Initial values
+
+    if (!countrySelect || !shippingPriceElement || !subtotalElement || !totalAmountElement) return;
+
     let shippingCost = 5.00;
-    const subtotal = subtotalElement
-        ? parseFloat(subtotalElement.textContent) || 0
-        : 0;
-    
-    // Update shipping price based on selected country
+    const subtotal = parseFloat(subtotalElement.textContent) || 0;
+
     countrySelect.addEventListener('change', (e) => {
-        const selectedCountry = e.target.value;
-        shippingCost = calculateShippingCost(selectedCountry);
-
-        // Update shipping price in the UI
-        if (shippingPriceElement) {
-            shippingPriceElement.textContent = shippingCost.toFixed(2);
-        }
-
-        // Update the total
+        shippingCost = calculateShippingCost(e.target.value);
+        shippingPriceElement.textContent = shippingCost.toFixed(2);
         updateTotal(subtotal, shippingCost, totalAmountElement);
     });
 
-    // Set the initial total
-    updateTotal(subtotal, shippingCost, totalAmountElement);
+    updateTotal(subtotal, shippingCost, totalAmountElement); // Initial total
 }
 
 function calculateShippingCost(country) {
@@ -58,19 +51,16 @@ function calculateShippingCost(country) {
         UK: 10.00,
         Malaysia: 5.00
     };
-
-    return shippingRates[country] || 0.00; // Default shipping cost if country not listed
+    return shippingRates[country] || 0.00; // Default: free shipping
 }
 
-// Update the total price (subtotal + shipping)
 function updateTotal(subtotal, shippingCost, totalAmountElement) {
     const total = subtotal + shippingCost;
-    if (totalAmountElement) {
-        totalAmountElement.textContent = total.toFixed(2);
-    }
+    totalAmountElement.textContent = total.toFixed(2);
 }
 
-// Set up the cart functionality (adding items, storing in localStorage, etc.)
+// === Cart Functions ===
+
 function setupCartFunctionality() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach((button) => {
@@ -80,10 +70,7 @@ function setupCartFunctionality() {
                 const product = {
                     name: productElement.querySelector('h3').textContent.trim(),
                     price: parseFloat(
-                        productElement
-                            .querySelector('p')
-                            .textContent.replace('$', '')
-                            .trim()
+                        productElement.querySelector('p').textContent.replace('$', '').trim()
                     ),
                     image: productElement.querySelector('img').src
                 };
@@ -93,66 +80,21 @@ function setupCartFunctionality() {
     });
 }
 
-// Set up the category filter functionality
-function setupCategoryFilter() {
-    const categoryItems = document.querySelectorAll('.category-column li');
-    categoryItems.forEach((item) => {
-        item.addEventListener('click', () => {
-            // Remove 'selected' class from all items
-            categoryItems.forEach((i) => i.classList.remove('selected'));
-
-            // Add 'selected' class to the clicked item
-            item.classList.add('selected');
-
-            const selectedCategory = item.textContent
-                .toLowerCase()
-                .replace(/[^\w\s]/g, '')
-                .replace(/\s+/g, ''); // Normalize category name
-            filterByCategory(selectedCategory);
-        });
-    });
-}   
-
-// Function to filter products by category
-function filterByCategory(category) {
-    // Get all product items
-    const products = document.querySelectorAll('.product-item');
-
-    // If 'all' is selected, show all products
-    if (category === 'all') {
-        products.forEach(product => {
-            product.style.display = 'block'; // Show all products
-        });
-    } else {
-        // Otherwise, filter products by category
-        products.forEach(product => {
-            const productCategories = product.getAttribute('data-category').split(' ');
-            if (productCategories.includes(category)) {
-                product.style.display = 'block'; // Show product if it matches the selected category
-            } else {
-                product.style.display = 'none'; // Hide product if it doesn't match
-            }
-        });
-    }
-}
-
-// Array to hold cart items
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Function to add item to the cart
 function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${product.name} has been added to your cart!`);
+    updateCartTotal(cart);
 }
 
-// Function to render cart items on the cart page
 function renderCart() {
     const cartItemsContainer = document.querySelector('.cart-items');
     const cartTotalElement = document.getElementById('cart-total');
 
-    if (!cartItemsContainer) return; // If not on the cart page, exit
+    if (!cartItemsContainer || !cartTotalElement) return;
 
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cartItemsContainer.innerHTML = '';
     let total = 0;
 
@@ -172,76 +114,99 @@ function renderCart() {
     });
 
     cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
-    
     localStorage.setItem('totalAmount', total.toFixed(2));
 }
 
-// Function to remove an item from the cart
 function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
 }
 
-// Remove footer after scrolling down
-let lastScrollTop = 0; // Keeps track of the last scroll position
-const footer = document.querySelector('footer'); // Get the footer element
+// === Category Filter Functions ===
 
-window.addEventListener('scroll', () => {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (currentScrollTop > lastScrollTop) {
-        // User is scrolling down
-        footer.style.display = 'none'; // Hide the footer
-    } else {
-        // User is scrolling up
-        footer.style.display = 'block'; // Show the footer
-    }
-
-    lastScrollTop = currentScrollTop; // Update the last scroll position
-});
-
-// Handle checkout button click
-const checkoutButton = document.getElementById('checkout-button');
-if (checkoutButton) {
-    checkoutButton.addEventListener('click', () => {
-        window.location.href = 'checkout.html'; // Redirect to the checkout page
-    });
-}
-
-// Handle checkout back button click
-const checkoutbackButton = document.getElementById('checkoutbackbutton');
-if (checkoutbackButton) {
-    checkoutbackButton.addEventListener('click', () => {
-        window.location.href = 'cart.html'; // Redirect to the cart page
-    });
-}
-
-const nextButton = document.getElementById('next-button');
-if (nextButton) {
-    nextButton.addEventListener('click', () => {
-        window.location.href = 'payment.html'; // Redirect to the payment page
-    });
-}
-
-document.getElementById('paypal-button').addEventListener('click', async () => {
-    try {
-        const response = await fetch('/create-payment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                // You can include cart or other data here
-            })
+function setupCategoryFilter() {
+    const categoryItems = document.querySelectorAll('.category-column li');
+    categoryItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            categoryItems.forEach((i) => i.classList.remove('selected'));
+            item.classList.add('selected');
+            const category = item.textContent.toLowerCase().trim().replace(/\s+/g, '');
+            filterByCategory(category);
         });
-        const data = await response.json();
-        if (data.status === 'CREATED') {
-            // Redirect user to PayPal's approval URL
-            window.location.href = data.links.find(link => link.rel === 'approve').href;
-        }
-    } catch (error) {
-        console.error("Error processing payment:", error);
-    }
-});
+    });
+}
 
+function filterByCategory(category) {
+    const products = document.querySelectorAll('.product-item');
+    products.forEach((product) => {
+        const categories = product.dataset.category?.split(' ') || [];
+        product.style.display = categories.includes(category) || category === 'all' ? 'block' : 'none';
+    });
+}
+
+// === Navigation and Footer Behavior ===
+
+function setupPageNavigation() {
+    const checkoutButton = document.getElementById('checkout-button');
+    const checkoutBackButton = document.getElementById('checkoutbackbutton');
+    const nextButton = document.getElementById('next-button');
+
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            window.location.href = 'checkout.html';
+        });
+    }
+
+    if (checkoutBackButton) {
+        checkoutBackButton.addEventListener('click', () => {
+            window.location.href = 'cart.html';
+        });
+    }
+
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            window.location.href = 'payment.html';
+        });
+    }
+}
+
+function setupFooterBehavior() {
+    const footer = document.querySelector('footer');
+    let lastScrollTop = 0;
+
+    if (!footer) return;
+
+    window.addEventListener('scroll', () => {
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        footer.style.display = currentScrollTop > lastScrollTop ? 'none' : 'block';
+        lastScrollTop = currentScrollTop;
+    });
+}
+
+// === Payment Integration ===
+
+function setupPaymentIntegration() {
+    const paypalButton = document.getElementById('paypal-button');
+    if (!paypalButton) return;
+
+    paypalButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/create-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
+            });
+            const data = await response.json();
+            if (data.status === 'CREATED') {
+                const approvalUrl = data.links.find((link) => link.rel === 'approve')?.href;
+                if (approvalUrl) {
+                    window.location.href = approvalUrl;
+                }
+            }
+        } catch (error) {
+            console.error('Error processing payment:', error);
+        }
+    });
+}
