@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    initialiseCartPage();
+
+    setupCheckoutForm();
+
+    setupCartFunctionality();
+
+    setupCategoryFilter();
+});
+
+// Initialise the cart page (set default subtotal, render cart, etc.)
+function initialiseCartPage() {
     renderCart(); // Render cart items if on the cart page
 
     const totalAmount = localStorage.getItem('totalAmount');
@@ -6,7 +17,61 @@ document.addEventListener('DOMContentLoaded', () => {
     if (subtotalElement) {
         subtotalElement.textContent = totalAmount ? parseFloat(totalAmount).toFixed(2) : '0.00'; // Display total amount
     }
+}
 
+// Handle the checkout form (shipping cost calculations and total updates)
+function setupCheckoutForm() {
+    const countrySelect = document.getElementById('checkoutcountry');
+    const shippingPriceElement = document.getElementById('shipping-price');
+    const totalAmountElement = localStorage.getItem('total-amount');
+    const subtotalElement = document.getElementById('subtotal');
+    
+    // Initial values
+    let shippingCost = 5.00;
+    const subtotal = subtotalElement
+        ? parseFloat(subtotalElement.textContent) || 0
+        : 0;
+    
+    // Update shipping price based on selected country
+    countrySelect.addEventListener('change', (e) => {
+        const selectedCountry = e.target.value;
+        shippingCost = calculateShippingCost(selectedCountry);
+
+        // Update shipping price in the UI
+        if (shippingPriceElement) {
+            shippingPriceElement.textContent = shippingCost.toFixed(2);
+        }
+
+        // Update the total
+        updateTotal(subtotal, shippingCost, totalAmountElement);
+    });
+
+    // Set the initial total
+    updateTotal(subtotal, shippingCost, totalAmountElement);
+}
+
+function calculateShippingCost(country) {
+    const shippingRates = {
+        USA: 10.00,
+        Canada: 10.00,
+        Singapore: 0.00,
+        UK: 10.00,
+        Malaysia: 5.00
+    };
+
+    return shippingRates[country] || 0.00; // Default shipping cost if country not listed
+}
+
+// Update the total price (subtotal + shipping)
+function updateTotal(subtotal, shippingCost, totalAmountElement) {
+    const total = subtotal + shippingCost;
+    if (totalAmountElement) {
+        totalAmountElement.textContent = total.toFixed(2);
+    }
+}
+
+// Set up the cart functionality (adding items, storing in localStorage, etc.)
+function setupCartFunctionality() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
     addToCartButtons.forEach((button) => {
         button.addEventListener('click', () => {
@@ -14,75 +79,39 @@ document.addEventListener('DOMContentLoaded', () => {
             if (productElement) {
                 const product = {
                     name: productElement.querySelector('h3').textContent.trim(),
-                    price: parseFloat(productElement.querySelector('p').textContent.replace('$', '').trim()),
+                    price: parseFloat(
+                        productElement
+                            .querySelector('p')
+                            .textContent.replace('$', '')
+                            .trim()
+                    ),
                     image: productElement.querySelector('img').src
                 };
                 addToCart(product);
             }
         });
     });
+}
 
+// Set up the category filter functionality
+function setupCategoryFilter() {
     const categoryItems = document.querySelectorAll('.category-column li');
-    categoryItems.forEach(item => {
+    categoryItems.forEach((item) => {
         item.addEventListener('click', () => {
             // Remove 'selected' class from all items
-            categoryItems.forEach(i => i.classList.remove('selected'));
-            
+            categoryItems.forEach((i) => i.classList.remove('selected'));
+
             // Add 'selected' class to the clicked item
             item.classList.add('selected');
-            
-            const selectedCategory = item.textContent.toLowerCase().replace(/[^\w\s]/g, '').replace(/\s+/g, ''); // Get the category from text
+
+            const selectedCategory = item.textContent
+                .toLowerCase()
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, ''); // Normalize category name
             filterByCategory(selectedCategory);
         });
     });
-
-    const countrySelect = document.getElementById('checkoutcountry');
-    const shippingPriceElement = document.getElementById('shipping-price');
-    
-    // Initial shipping cost
-    let shippingCost = 5.00;
-    
-    // Function to update shipping price based on selected country
-    countrySelect.addEventListener('change', (e) => {
-        const selectedCountry = e.target.value;
-        
-        // Example shipping cost changes based on country
-        if (selectedCountry === 'USA') {
-            shippingCost = 10.00;
-        } else if (selectedCountry === 'Canada') {
-            shippingCost = 10.00;
-        } else if (selectedCountry === 'Singapore') {
-            shippingCost = 0.00;
-        } else if (selectedCountry === 'UK') {
-            shippingCost = 10.00;
-        } else if (selectedCountry === 'Malaysia') {
-            shippingCost = 5.00;
-        }
-        
-        // Update shipping price
-        shippingPriceElement.textContent = shippingCost.toFixed(2);
-
-        updateTotal();
-    });
-
-    if (subtotalElement) {
-        subtotalElement.textContent = subtotal.toFixed(2);
-    }
-
-    // Update total price (subtotal + shipping cost)
-    function updateTotal() {
-        const total = subtotal + shippingCost;
-
-        // Update the order summary values
-        if (totalAmountElement) {
-            totalAmountElement.textContent = total.toFixed(2);  // Update total in the order summary
-        }
-    }
-
-    // Initial total update
-    updateTotal(subtotal, shippingCost);
-
-});
+}   
 
 // Function to filter products by category
 function filterByCategory(category) {
