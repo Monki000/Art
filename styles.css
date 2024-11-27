@@ -25,6 +25,7 @@ header {
 
 #products p {
     text-align: center;
+    top: 10px;
 }
 
 .product-container {
