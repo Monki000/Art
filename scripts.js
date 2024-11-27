@@ -31,7 +31,7 @@ function setupCheckoutForm() {
 
     if (!countrySelect || !shippingPriceElement || !subtotalElement || !totalAmountElement) return;
 
-    let shippingCost = 5.00;
+    let shippingCost = 0.00;
     const subtotal = parseFloat(subtotalElement.textContent) || 0;
 
     countrySelect.addEventListener('change', (e) => {
