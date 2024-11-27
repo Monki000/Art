@@ -192,11 +192,12 @@ function setupPaymentIntegration() {
     if (!paypalButton) return;
 
     paypalButton.addEventListener('click', async () => {
+        const totalAmount = parseFloat(document.getElementById('total-amount').textContent);
         try {
             const response = await fetch('/create-payment', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({})
+                body: JSON.stringify({ amount: totalAmount })
             });
             const data = await response.json();
             if (data.status === 'CREATED') {
