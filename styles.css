@@ -86,8 +86,6 @@ header {
 }
 
 .product-item button {
-    margin-top: auto;
-    margin-bottom: 10px;
     padding: 8px 16px;
     font-size: 14px;
     color: #fff;
