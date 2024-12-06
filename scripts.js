@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initialiseCartPage();
     setupCheckoutForm();
-    setupCartFunctionality();
+    setupModalFunctionality();
     setupCategoryFilter();
     setupPageNavigation();
     setupFooterBehavior();
@@ -92,61 +92,69 @@ function updateTotal(subtotal, shippingCost, totalAmountElement) {
 }
 
 // === Cart Functions ===
-// Get modal elements
-const modal = document.getElementById('product-modal');
-const modalImage = document.getElementById('modal-image');
-const modalTitle = document.getElementById('modal-title');
-const modalDescription = document.getElementById('modal-description');
-const modalSize = document.getElementById('modal-size');
-const modalMaterial = document.getElementById('modal-material');
-const modalQuantity = document.getElementById('modal-quantity');
-const modalClose = document.querySelector('.modal .close');
-const modalAddToCart = document.getElementById('modal-add-to-cart');
+function setupModalFunctionality() {
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    const modal = document.getElementById('product-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalSize = document.getElementById('modal-size');
+    const modalMaterial = document.getElementById('modal-material');
+    const modalQuantity = document.getElementById('modal-quantity');
+    const modalAddToCartButton = document.getElementById('modal-add-to-cart');
 
-// Open modal on product click
-document.querySelectorAll('.product-item').forEach((item) => {
-  item.addEventListener('click', () => {
-    // Set modal content based on clicked product
-    modalImage.src = item.dataset.image;
-    modalTitle.textContent = item.dataset.title;
-    modalDescription.textContent = item.dataset.description;
-    modalSize.textContent = item.dataset.size;
-    modalMaterial.textContent = item.dataset.material;
+    // Add event listeners to each Add to Cart button
+    addToCartButtons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default button behavior
 
-    // Reset quantity
-    modalQuantity.value = 1;
+            const productElement = button.closest('.product-item'); // Get the product's container
+            if (productElement) {
+                // Extract product details
+                const productName = productElement.querySelector('h3').textContent.trim();
+                const productPrice = productElement.querySelector('p').textContent.replace('$', '').trim();
+                const productImage = productElement.querySelector('img').src;
 
-    // Show modal
-    modal.style.display = 'block';
-  });
-});
+                // You can use custom data attributes on the product item for additional details
+                const productSize = productElement.dataset.size || 'Default size';
+                const productMaterial = productElement.dataset.material || 'Default material';
 
-// Close modal
-modalClose.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
+                // Populate modal content
+                modalImage.src = productImage;
+                modalTitle.textContent = productName;
+                modalDescription.textContent = `Price: $${productPrice}`;
+                modalDescription.setAttribute('data-price', productPrice); // Set data-price
+                modalSize.textContent = productSize;
+                modalMaterial.textContent = productMaterial;
+                modalQuantity.value = 1; // Reset quantity
 
-// Close modal when clicking outside of content
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    modal.style.display = 'none';
-  }
-});
+                // Show the modal
+                modal.style.display = 'block';
+            }
+        });
+    });
 
+    // Close modal functionality
+    const closeModal = modal.querySelector('.close');
+    closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
-// Handle Add to Cart button in modal
-modalAddToCart.addEventListener('click', () => {
-    const product = {
-        name: modalTitle.textContent.trim(),
-        price: parseFloat(modalDescription.dataset.price), // Add a `data-price` to modal description if needed
-        image: modalImage.src,
-        quantity: parseInt(modalQuantity.value, 10)
-    };
+    // Add to cart functionality inside modal
+    modalAddToCartButton.addEventListener('click', () => {
+        const quantity = parseInt(modalQuantity.value);
+        const price = parseFloat(modalDescription.getAttribute('data-price'));
+        const product = {
+            name: modalTitle.textContent.trim(),
+            price: price * quantity, // Total price based on quantity
+            image: modalImage.src,
+            quantity: quantity
+        };
 
-    addToCart(product); // Use the existing function to add the product to cart
-    modal.style.display = 'none';
-});
-
+        addToCart(product); // Reuse your existing addToCart function
+        modal.style.display = 'none'; // Close modal
+    });
+}
 
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
