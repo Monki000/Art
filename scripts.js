@@ -195,6 +195,11 @@ function renderCart() {
                 <h3>${item.name}</h3>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Price: $${itemTotalPrice.toFixed(2)}</p>
+                <div class="quantity-controls">
+                    <button class="decrease-quantity" data-index="${index}">−</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="increase-quantity" data-index="${index}">+</button>
+                </div>
                 <button onclick="removeFromCart(${index})">Remove</button>
             </div>
         `;
@@ -204,6 +209,36 @@ function renderCart() {
 
     cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
     localStorage.setItem('totalAmount', total.toFixed(2));
+
+    setupQuantityButtons(cart);
+}
+
+function setupQuantityButtons(cart) {
+    const decreaseButtons = document.querySelectorAll('.decrease-quantity');
+    const increaseButtons = document.querySelectorAll('.increase-quantity');
+
+    decreaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const index = parseInt(button.dataset.index);
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+                updateCart(cart);
+            }
+        });
+    });
+
+    increaseButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const index = parseInt(button.dataset.index);
+            cart[index].quantity++;
+            updateCart(cart);
+        });
+    });
+}
+
+function updateCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
 }
 
 function removeFromCart(index) {
