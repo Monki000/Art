@@ -92,33 +92,80 @@ function updateTotal(subtotal, shippingCost, totalAmountElement) {
 }
 
 // === Cart Functions ===
+// Get modal elements
+const modal = document.getElementById('product-modal');
+const modalImage = document.getElementById('modal-image');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalSize = document.getElementById('modal-size');
+const modalMaterial = document.getElementById('modal-material');
+const modalQuantity = document.getElementById('modal-quantity');
+const modalClose = document.querySelector('.modal .close');
+const modalAddToCart = document.getElementById('modal-add-to-cart');
 
-function setupCartFunctionality() {
-    const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    addToCartButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-            const productElement = button.closest('.product-item');
-            if (productElement) {
-                const product = {
-                    name: productElement.querySelector('h3').textContent.trim(),
-                    price: parseFloat(
-                        productElement.querySelector('p').textContent.replace('$', '').trim()
-                    ),
-                    image: productElement.querySelector('img').src
-                };
-                addToCart(product);
-            }
-        });
-    });
-}
+// Open modal on product click
+document.querySelectorAll('.product-item').forEach((item) => {
+  item.addEventListener('click', () => {
+    // Set modal content based on clicked product
+    modalImage.src = item.dataset.image;
+    modalTitle.textContent = item.dataset.title;
+    modalDescription.textContent = item.dataset.description;
+    modalSize.textContent = item.dataset.size;
+    modalMaterial.textContent = item.dataset.material;
+
+    // Reset quantity
+    modalQuantity.value = 1;
+
+    // Show modal
+    modal.style.display = 'block';
+  });
+});
+
+// Close modal
+modalClose.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Close modal when clicking outside of content
+window.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+});
+
+
+// Handle Add to Cart button in modal
+modalAddToCart.addEventListener('click', () => {
+    const product = {
+        name: modalTitle.textContent.trim(),
+        price: parseFloat(modalDescription.dataset.price), // Add a `data-price` to modal description if needed
+        image: modalImage.src,
+        quantity: parseInt(modalQuantity.value, 10)
+    };
+
+    addToCart(product); // Use the existing function to add the product to cart
+    modal.style.display = 'none';
+});
+
 
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(product);
+
+    // Check if the product already exists in the cart
+    const existingProduct = cart.find((item) => item.name === product.name);
+    if (existingProduct) {
+        // If it exists, update the quantity
+        existingProduct.quantity += product.quantity;
+    } else {
+        // If not, add it as a new item
+        cart.push(product);
+    }
+
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${product.name} has been added to your cart!`);
+    alert(`${product.quantity} x ${product.name} has been added to your cart!`);
     updateCartTotal(cart);
 }
+
 
 function renderCart() {
     const cartItemsContainer = document.querySelector('.cart-items');
@@ -131,13 +178,15 @@ function renderCart() {
     let total = 0;
 
     cart.forEach((item, index) => {
+        const itemTotalPrice = item.price * item.quantity;
         const itemElement = document.createElement('div');
         itemElement.classList.add('cart-item');
         itemElement.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <h3>${item.name}</h3>
-                <p>Price: $${item.price.toFixed(2)}</p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Price: $${itemTotalPrice.toFixed(2)}</p>
                 <button onclick="removeFromCart(${index})">Remove</button>
             </div>
         `;
