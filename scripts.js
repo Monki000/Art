@@ -166,7 +166,7 @@ function addToCart(product) {
         existingProduct.quantity += product.quantity;
     } else {
         // If not, add it as a new item
-        cart.push(product);
+        cart.push({ ...product, price: parseFloat(product.price) });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
