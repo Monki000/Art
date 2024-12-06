@@ -267,6 +267,24 @@
                 </div>
             </div>
         </div>
+
+        <div id="product-modal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modal-image" src="" alt="Product Image">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+            <div id="modal-extra-info">
+              <p>Size: <span id="modal-size"></span></p>
+              <p>Material: <span id="modal-material"></span></p>
+            </div>
+            <div class="quantity-selector">
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="modal-quantity" value="1" min="1">
+            </div>
+            <button id="modal-add-to-cart">Add to Cart</button>
+          </div>
+        </div>
     </section>
 
     <footer>
