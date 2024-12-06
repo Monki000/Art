@@ -148,6 +148,32 @@ header {
   text-align: center;
 }
 
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-controls button {
+    background-color: #ff5a5f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.quantity-controls button:hover {
+    background-color: #e60023;
+}
+
+.quantity {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 
 @media (max-width: 768px) {
     .product-container {
