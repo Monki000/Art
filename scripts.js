@@ -199,7 +199,7 @@ function renderCart() {
             </div>
         `;
         cartItemsContainer.appendChild(itemElement);
-        total += item.price;
+        total += itemTotalPrice;
     });
 
     cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
