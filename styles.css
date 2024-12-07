@@ -188,9 +188,10 @@ header {
 }
 
 .cart-item button:last-of-type {
-    margin-left: 20px; /* Adds spacing before the Remove button */
+    margin-top: 20px; /* Adds spacing before the Remove button */
     background-color: #ff5a5f;
     color: white;
+    border: none;
 }
 
 .quantity {
