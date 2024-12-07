@@ -169,7 +169,6 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: 20px;
 }
 
 .quantity-controls button {
@@ -192,6 +191,11 @@ header {
     background-color: #ff5a5f;
     color: white;
     border: none;
+    cursor: pointer;
+}
+
+.clear-item:hover {
+    background-color: #e60023;
 }
 
 .quantity {
