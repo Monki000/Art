@@ -192,14 +192,13 @@ function renderCart() {
             <img src="${item.image}" alt="${item.name}">
             <div>
                 <h3>${item.name}</h3>
-                <p>Quantity: ${item.quantity}</p>
                 <p>Price: $${itemTotalPrice.toFixed(2)}</p>
                 <div class="quantity-controls">
                     <button class="decrease-quantity" data-index="${index}">−</button>
                     <span class="quantity">${item.quantity}</span>
                     <button class="increase-quantity" data-index="${index}">+</button>
                 </div>
-                <button onclick="removeFromCart(${index})">Remove</button>
+                <button onclick="removeFromCart(${index})">Clear Item</button>
             </div>
         `;
         cartItemsContainer.appendChild(itemElement);
