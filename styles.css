@@ -145,6 +145,7 @@ header {
 
 .quantity-selector {
     display: flex;
+    justify-content: center;
     align-items: center; /* Vertically align the text and input */
     gap: 10px; /* Add spacing between the label and input */
 }
