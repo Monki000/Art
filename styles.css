@@ -115,6 +115,7 @@ header {
 
 .modal-content {
   background-color: #fff;
+  margin: auto;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
