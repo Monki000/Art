@@ -171,7 +171,6 @@ function addToCart(product) {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${product.quantity} x ${product.name} has been added to your cart!`);
-    updateCartTotal(cart);
 }
 
 
