@@ -265,6 +265,10 @@ nav a.selected {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
+#cart-total {
+    font-size: 50px;
+}
+
 #home, #products, #cart, #checkout-form {
     padding: 40px;
 }
