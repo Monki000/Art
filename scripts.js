@@ -129,6 +129,7 @@ function setupModalFunctionality() {
                 modalQuantity.value = 1; // Reset quantity
 
                 // Show the modal
+                modal.classList.remove('hidden');
                 modal.style.display = 'block';
             }
         });
