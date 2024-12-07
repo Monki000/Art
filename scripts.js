@@ -152,7 +152,7 @@ function setupModalFunctionality() {
         };
 
         addToCart(product); // Reuse your existing addToCart function
-        modal.style.display = 'none'; // Close modal
+        modal.classList.add('hidden');  // Close modal
     });
 }
 
