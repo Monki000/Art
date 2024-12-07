@@ -146,7 +146,7 @@ function setupModalFunctionality() {
         const price = parseFloat(modalDescription.getAttribute('data-price'));
         const product = {
             name: modalTitle.textContent.trim(),
-            price: price * quantity, // Total price based on quantity
+            price: price, // Unit price
             image: modalImage.src,
             quantity: quantity
         };
