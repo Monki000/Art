@@ -85,7 +85,8 @@ header {
     max-width: 100%; /* Ensure the image doesn't overflow */
 }
 
-.product-item button {
+.product-item button, #modal-add-to-cart, .clear-item {
+    margin: 10px;
     padding: 8px 16px;
     font-size: 14px;
     color: #fff;
@@ -96,7 +97,7 @@ header {
     transition: background-color 0.3s;
 }
 
-.product-item button:hover {
+.product-item button:hover, #modal-add-to-cart:hover, .clear-item:hover {
     background-color: #e60023;
 }
 
@@ -183,18 +184,6 @@ header {
 }
 
 .quantity-controls button:hover {
-    background-color: #e60023;
-}
-
-.clear-item {
-    margin-top: 10px; /* Adds spacing before the Remove button */
-    background-color: #ff5a5f;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.clear-item:hover {
     background-color: #e60023;
 }
 
