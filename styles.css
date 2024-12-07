@@ -144,12 +144,19 @@ header {
 }
 
 .quantity-selector {
-  margin-top: 10px;
+    display: flex;
+    align-items: center; /* Vertically align the text and input */
+    gap: 10px; /* Add spacing between the label and input */
+}
+
+.quantity-selector label {
+    font-size: 1rem; /* Adjust the label size if needed */
 }
 
 .quantity-selector input {
-  width: 50px;
-  text-align: center;
+    width: 60px; /* Set a specific width for the input field */
+    padding: 5px; /* Add some padding for better appearance */
+    font-size: 1rem; /* Match the label font size */
 }
 
 .quantity-controls {
