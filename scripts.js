@@ -199,7 +199,7 @@ function renderCart() {
                     <span class="quantity">${item.quantity}</span>
                     <button class="increase-quantity" data-index="${index}">+</button>
                 </div>
-                <button onclick="removeFromCart(${index})">Clear Item</button>
+                <button class="clear-item" onclick="removeFromCart(${index})">Clear Item</button>
             </div>
         `;
         cartItemsContainer.appendChild(itemElement);
