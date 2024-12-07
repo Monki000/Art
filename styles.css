@@ -220,7 +220,7 @@ nav a:hover {
     font-weight: bold;
 }
 
-.category-column li.selected {
+nav a.selected {
     font-weight: bold;
 }
 
