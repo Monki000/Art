@@ -219,10 +219,12 @@ nav a {
     margin: 0 1rem;
     text-decoration: none;
     font-size: 20px;
+    transition: transform 0.2s ease, font-weight 0.2s ease; /* Adding transition for smooth effect */
 }
 
 nav a:hover {
-    font-weight: bold;
+    transform: scale(1.1); /* Gently enlarge the text */
+    font-weight: bold; /* Keeps bold without shifting the layout */
 }
 
 nav a.selected {
