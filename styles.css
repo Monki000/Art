@@ -144,6 +144,10 @@ header {
   cursor: pointer;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .quantity-selector {
     display: flex;
     justify-content: center;
