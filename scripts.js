@@ -247,6 +247,27 @@ function removeFromCart(index) {
     renderCart();
 }
 
+
+const quantityinput = document.getElementById('modal-quantity');
+
+quantityinput.addEventListener('keydown', (event) => {
+    // Allow Backspace, Arrow keys, Tab, and Delete
+    if (
+        event.key === 'Backspace' || 
+        event.key === 'ArrowLeft' || 
+        event.key === 'ArrowRight' || 
+        event.key === 'Tab' || 
+        event.key === 'Delete'
+    ) {
+        return;
+    }
+
+    // Prevent negative sign, non-digit characters, and other invalid inputs
+    if (!/^\d$/.test(event.key)) {
+        event.preventDefault();
+    }
+});
+
 // === Category Filter Functions ===
 
 function setupCategoryFilter() {
