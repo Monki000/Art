@@ -144,6 +144,12 @@ function setupModalFunctionality() {
     // Add to cart functionality inside modal
     modalAddToCartButton.addEventListener('click', () => {
         const quantity = parseInt(modalQuantity.value);
+
+        if (isNaN(quantity) || quantity <= 0) {
+            alert('Please enter a quantity greater than 0.');
+            return; // Prevent proceeding if the quantity is invalid
+        }
+        
         const price = parseFloat(modalDescription.getAttribute('data-price'));
         const product = {
             name: modalTitle.textContent.trim(),
