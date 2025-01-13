@@ -17,6 +17,18 @@ header {
     text-align: center;
 }
 
+.boothing-gallery {
+    padding: 5px;
+}
+
+.boothing-gallery img {
+    border-radius: 10px;
+}
+
+.boothing-gallery h3 {
+    text-align: center;
+}
+
 #tong-icon {
     width: 100px;
     height: auto;
