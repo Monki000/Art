@@ -24,7 +24,7 @@ header {
 
 .boothing-gallery {
     padding: 5px;
-    display: flex;
+    display: flex-wrap;
 }
 
 .booth-experience img {
