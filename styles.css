@@ -19,7 +19,7 @@ header {
 
 .introduction {
     text-align: center;
-    padding: 5px;
+    padding: 2px;
 }
 
 .boothing-gallery {
@@ -37,7 +37,8 @@ header {
     text-align: center;
     margin: 5px;
     margin-bottom: 20px;
-    width: 32%;
+    max-width: 400px;
+    width: 49%;
 }
 
 #tong-icon {
