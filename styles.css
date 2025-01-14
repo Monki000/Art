@@ -29,11 +29,14 @@ header {
 
 .booth-experience img {
     border-radius: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .booth-experience {
     text-align: center;
     margin: 1.25em 0;
+    width: 49%;
 }
 
 #tong-icon {
