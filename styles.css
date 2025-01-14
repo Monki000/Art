@@ -35,8 +35,9 @@ header {
 
 .booth-experience {
     text-align: center;
-    margin: 1.25em 0;
-    width: 49%;
+    margin: 5px;
+    margin-bottom: 20px;
+    width: 32%;
 }
 
 #tong-icon {
