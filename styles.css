@@ -17,16 +17,23 @@ header {
     text-align: center;
 }
 
-.boothing-gallery {
+.introduction {
+    text-align: center;
     padding: 5px;
 }
 
-.boothing-gallery img {
+.boothing-gallery {
+    padding: 5px;
+    display: flex;
+}
+
+.booth-experience img {
     border-radius: 10px;
 }
 
-.boothing-gallery h3 {
+.booth-experience {
     text-align: center;
+    margin: 1.25em 0;
 }
 
 #tong-icon {
