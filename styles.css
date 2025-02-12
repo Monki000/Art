@@ -17,14 +17,35 @@ header {
     text-align: center;
 }
 
+#tong-icon {
+    width: auto;
+    height: 15vh;
+    position: absolute;
+}
+
+#cart-icon {
+    width: 10vw; /* Adjust size as needed */
+    height: auto;
+    position: absolute; /* Position it absolutely */
+    right: 20px; /* Adjust right spacing */
+    top: 20px; /* Adjust top spacing */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
 .introduction {
     text-align: center;
     padding: 2px;
 }
 
+#home h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
 .boothing-gallery {
     padding: 5px;
-    display: flex-wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .booth-experience img {
@@ -39,12 +60,6 @@ header {
     margin-bottom: 20px;
     max-width: 400px;
     width: 49%;
-}
-
-#tong-icon {
-    width: 100px;
-    height: auto;
-    margin-right: 15px;
 }
 
 #products p {
@@ -247,15 +262,6 @@ nav a:hover {
 nav a.selected {
     transform: scale(1.1);
     font-weight: bold;
-}
-
-#cart-icon {
-    width: 50px; /* Adjust size as needed */
-    height: auto;
-    position: absolute; /* Position it absolutely */
-    right: 20px; /* Adjust right spacing */
-    top: 20px; /* Adjust top spacing */
-    cursor: pointer; /* Change cursor to pointer */
 }
 
 .cart-items {
