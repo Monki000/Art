@@ -20,11 +20,11 @@ header {
 #tong-icon {
     width: auto;
     height: 15vh;
-    position: absolute;
+    margin-right: 15px;
 }
 
 #cart-icon {
-    width: 10vw; /* Adjust size as needed */
+    width: 50px; /* Adjust size as needed */
     height: auto;
     position: absolute; /* Position it absolutely */
     right: 20px; /* Adjust right spacing */
@@ -46,20 +46,29 @@ header {
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .booth-experience img {
     border-radius: 10px;
-    width: 100%;
-    height: auto;
+    object-fit: contain;
+    
 }
 
 .booth-experience {
     text-align: center;
     margin: 5px;
     margin-bottom: 20px;
-    max-width: 400px;
-    width: 49%;
+    width: 40vw;
+    height: 60vh;
+}
+
+.booth-experience p {
+    bottom: 5px;
+}
+
+.booth-experience p:last-of-type {
+    font-size: 0.7em;
 }
 
 #products p {
