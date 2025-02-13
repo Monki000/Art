@@ -52,7 +52,8 @@ header {
 .booth-experience img {
     border-radius: 10px;
     object-fit: contain;
-    
+    width: 100%
+    height: auto;
 }
 
 .booth-experience {
@@ -64,7 +65,7 @@ header {
 }
 
 .booth-experience p {
-    bottom: 5px;
+    bottom: 0;
 }
 
 .booth-experience p:last-of-type {
