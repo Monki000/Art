@@ -61,11 +61,11 @@ header {
     width: 400px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 .booth-experience p:last-of-type {
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 #products p {
