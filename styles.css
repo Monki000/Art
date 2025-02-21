@@ -132,7 +132,8 @@ header {
 }
 
 .product-item img:hover {
-    transform: scale(1.3);
+    transform: scale(1.1);
+    border: 2px solid #f1a2b7;
 }
 
 .product-item button, #modal-add-to-cart, .clear-item {
