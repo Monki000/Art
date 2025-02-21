@@ -316,7 +316,7 @@ function setupPageNavigation() {
 }
 
 function setupFooterBehavior() {
-    const footer = document.querySelector('footer');
+    const footer = document.querySelectorAll('footer');
     let lastScrollTop = 0;
 
     if (!footer) return;
