@@ -44,6 +44,7 @@ header {
 
 .boothing-gallery {
     margin: 0;
+    padding: 30px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -61,7 +62,7 @@ header {
     width: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
 
