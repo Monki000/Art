@@ -43,7 +43,7 @@ header {
 }
 
 .boothing-gallery {
-    padding: 5px;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -51,19 +51,15 @@ header {
 
 .booth-experience img {
     border-radius: 10px;
-    object-fit: contain;
-    width: 100%
-    height: auto;
+    object-fit: cover;
+    width: 75%
+    height: 75%;
 }
 
 .booth-experience {
-    text-align: center;
-    margin: 5px;
-    margin-bottom: 20px;
-}
-
-.booth-experience p {
-    bottom: 0;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .booth-experience p:last-of-type {
