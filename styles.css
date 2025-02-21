@@ -46,7 +46,6 @@ header {
     margin: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
 }
 
 .booth-experience img {
@@ -57,7 +56,7 @@ header {
 }
 
 .booth-experience {
-    width: 50vw;
+    width: 300px;
     display: flex;
     flex-direction: column;
 }
