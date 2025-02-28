@@ -62,7 +62,9 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid black;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
 }
 
 .booth-experience p:last-of-type {
